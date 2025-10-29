@@ -38,7 +38,12 @@
 - ### Description
 
   * **소셜 디덕션 및 숨바꼭질 장르 융합:** 플레이어 Hider가 플레이어 Seeker를 피해 AI NPC들 사이에서 생존하는 PvP 규칙을 채택
-  * **AI NPC 행동 모방 (ML-Agents):** Hider 플레이어와 동일한 외형(`AnimalType`)을 가진 NPC(`Npa.cs`)를 `NpcSpawner.cs`가 스폰함. ML-Agents를 사용하여 이 NPC들이 플레이어와 유사하게(점프, 스핀, 이동) 행동하도록 학습시켜 Hider가 군중 속에 자신의 정체를 숨길 수 있는 환경을 구축
+  * **AI NPC 행동 모방 (ML-Agents - 학습 방식 개선):**
+    * **초기 학습 방식:** 개발 초기에는 `HiderTrainAgent.cs`에게 Hider의 특정 행동(예: 점프, 스핀) 자체에 직접적인 보상을 부여하여 해당 행동을 유도하는 방식으로 학습을 시도함. 그러나 이 방식은 원하는 행동(NPC처럼 보이기)을 학습시키기 위한 보상 함수 설계가 복잡해지고, 학습 효율이 낮으며 결과적으로 생성된 모델의 성능(자연스러움, Seeker 회피 능력)이 만족스럽지 못했음
+    * **개선된 학습 방식 (AI Seeker 및 의심도 시스템 도입):** 학습 효율과 모델 성능을 높이기 위해 학습 환경(`HiderTrainAgent.cs`가 동작하는 환경) 내에 **상대역 AI Seeker(`SeekerMover.cs`)**를 도입함. 이 AI Seeker는 '의심도(Suspicion)' 시스템을 기반으로 Hider Agent의 눈에 띄는 행동(점프, 스핀 등)을 감지하고 추적함. 이에 따라 Hider Agent의 보상 함수를 단순화함
+        * Seeker에게 잡히지 않고 오래 생존하는 것에 긍정적 보상
+        * Seeker에게 잡혔을 때 큰 부정적 보상
+        * (추가 가능) 의심도를 특정 범위 내로 유지하는 것에 대한 보상 또는 범위를 벗어났을 때의 패널티를 부여함. 이 접근 방식은 Agent가 스스로 Seeker의 탐지를 피하기 위해 NPC처럼 '덜 의심스러운' 행동 패턴을 학습하도록 유도하여, 더 간단한 코드 구조로 더 효율적인 학습과 높은 성능의 행동 모델을 얻을 수 있었음
   * **플레이어 역할 시스템 (Seeker/Hider):** `RoleManager.cs`가 게임 시작 시 무작위로 플레이어들에게 Seeker 또는 Hider 역할을 배정함
     * `SeekerRole.cs`: 플레이어 Seeker는 더 빠른 이동 속도를 가지며, 공격(`TryInteract`)을 통해 다른 플레이어(`HittableBody`)에게 피해를 줄 수 있음
     * `HiderRole.cs`: 플레이어 Hider는 맵 상의 오브젝트(`InteractableObject`)와 상호작용(예: 아이템 줍기)이 가능하며, NPC처럼 행동하여 Seeker의 눈을 속여야 함
