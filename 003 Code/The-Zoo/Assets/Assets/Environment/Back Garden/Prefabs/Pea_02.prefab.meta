@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7a8c279ac92e33840a195dd305e62001
+timeCreated: 1586097397
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Pea_02.prefab
+  uploadId: 361733

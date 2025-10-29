@@ -1,0 +1,48 @@
+{
+  "count": 1,
+  "self": 827.8601216,
+  "total": 827.87378449999994,
+  "children": {
+    "InitializeActuators": {
+      "count": 8,
+      "self": 0.0020222,
+      "total": 0.0020222,
+      "children": null
+    },
+    "InitializeSensors": {
+      "count": 8,
+      "self": 0.0060633,
+      "total": 0.0060633,
+      "children": null
+    },
+    "AgentSendState": {
+      "count": 2178,
+      "self": 0.005554,
+      "total": 0.005554,
+      "children": null
+    },
+    "DecideAction": {
+      "count": 2178,
+      "self": 0,
+      "total": 0,
+      "children": null
+    },
+    "AgentAct": {
+      "count": 2178,
+      "self": 0,
+      "total": 0,
+      "children": null
+    }
+  },
+  "gauges": {},
+  "metadata": {
+    "timer_format_version": "0.1.0",
+    "start_time_seconds": "1755448574",
+    "unity_version": "6000.1.12f1",
+    "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.1.12f1\\Editor\\Unity.exe -editor-mode com.unity.mppm.clone -no-cloud-project-bind-popup -noLaunchScreen -library-redirect ..\/.. -readonly -noUpm -upmRestorePackages -name Player 3 -projectPath C:\\Users\\user\\Documents\\GitHub\\The-Zoo\\Library\\VP\\mppmd82097bc --virtual-project-clone -forgetProjectPath -library-redirect ..\/.. -readonly -DisableDirectoryMonitor -noUpm -upmRestorePackages -noMainWindow -suppressDefaultMenuEntries -logFile C:\\Users\\user\\Documents\\GitHub\\The-Zoo\\Library\\VP\\mppmd82097bc\\Logs\\Editor.log -vp-channel-name=vp-channel -ump-channel-service-port 61171 -mainProcessId=91788 -vpId=mppmd82097bc -buildTarget StandaloneWindows64 -standaloneBuildSubtarget Player",
+    "communication_protocol_version": "1.5.0",
+    "com.unity.ml-agents_version": "2.0.1",
+    "scene_name": "CFXRF Demo",
+    "end_time_seconds": "1755449402"
+  }
+}

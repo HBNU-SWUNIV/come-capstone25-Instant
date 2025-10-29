@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e5b91df37fbe27046bf6530d6310e300
+timeCreated: 1586097418
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Plum_03.prefab
+  uploadId: 361733

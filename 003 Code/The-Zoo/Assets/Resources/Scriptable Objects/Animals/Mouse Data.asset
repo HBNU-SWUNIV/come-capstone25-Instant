@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
+  m_Name: Mouse Data
+  m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
+  type: 6
+  playerPrefab: {fileID: 4766890278896889114, guid: 61a77bcd63b37c94bb2aa292a96a09f1, type: 3}
+  npcPrefab: {fileID: 7120589706217740689, guid: 2ecf8a7886e9c894a87ed18bbae14e1d, type: 3}

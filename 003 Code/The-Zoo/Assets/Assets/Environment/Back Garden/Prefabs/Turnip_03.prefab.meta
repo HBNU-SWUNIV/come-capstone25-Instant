@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e13e727e8b14e354da89084d1a01a11f
+timeCreated: 1586097406
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Turnip_03.prefab
+  uploadId: 361733

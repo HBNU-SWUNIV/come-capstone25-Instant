@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 75f22cb1d0b441146bff884c78278fc6
+timeCreated: 1586097402
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Lemoncut_01.prefab
+  uploadId: 361733

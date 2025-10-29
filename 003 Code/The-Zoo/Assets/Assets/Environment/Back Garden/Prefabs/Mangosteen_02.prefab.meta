@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0d5187f1a0085cf4faa1fea00063e395
+timeCreated: 1586097412
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Mangosteen_02.prefab
+  uploadId: 361733

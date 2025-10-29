@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8d46ae5c934e4424181b2a5e77e9b7fe
+timeCreated: 1586097419
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Potato_03.prefab
+  uploadId: 361733

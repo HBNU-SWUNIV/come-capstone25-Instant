@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 068511e91bc1ad848b2ca5b2d9e91125
+timeCreated: 1586097398
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Limecut_01.prefab
+  uploadId: 361733

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8c58fe8522ad3f641bb80102a2907ddd
+timeCreated: 1586097408
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Aubergine_01.prefab
+  uploadId: 361733

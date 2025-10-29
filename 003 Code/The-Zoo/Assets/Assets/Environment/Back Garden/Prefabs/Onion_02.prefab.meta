@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d377280e35768a048a44e7d0b43a69ea
+timeCreated: 1586097404
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157683
+  packageName: Back Garden - Animation Assets
+  packageVersion: 1.10
+  assetPath: Assets/Assets/Environment/Back Garden/Prefabs/Onion_02.prefab
+  uploadId: 361733

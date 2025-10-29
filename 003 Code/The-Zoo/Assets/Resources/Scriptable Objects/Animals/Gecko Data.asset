@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
+  m_Name: Gecko Data
+  m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
+  type: 4
+  playerPrefab: {fileID: 8230077461164757965, guid: b0b6755f5da5e4a4e88b82c7838694cf, type: 3}
+  npcPrefab: {fileID: 1713449647057460361, guid: c18894125d4152440b05ded61c71ecc6, type: 3}
