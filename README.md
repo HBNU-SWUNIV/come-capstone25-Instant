@@ -15,10 +15,15 @@
   
 ## System Design
   - ### System Requirements
-    - 플레이어: 캐릭터의 데이터, 조작, 상호작용
-    - 게임플레이 코어: 실제 인게임 세션의 규칙과 네트워크 연결 관리
-    - 시스템 매니저: 전반적인 게임 상태와 핵심 기능들을 총괄
-    - 월드 및 AI: 구 형태의 맵에 맞는 중력 및 AI NPC 구현
+    - Unity Engine: 6000.2.6f
+    - Netcode for GameObjects: 2.6.0
+    - ML-Agents: 2.0.1
+    - Unity Services: 1.1.8
+      - Authentication (인증), Multiplayer (세션 관리)
+    - Unity Cinemachine: 3.1.4
+      - 3인칭 궤도 카메라(Orbital Follow) 구현
+    - DOTween Pro(Third-Party): 1.0.480
+      - UI 애니메이션 연출
     
 ## Case Study
   - ### Description
