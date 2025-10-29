@@ -18,6 +18,8 @@
   * **기존 숨바꼭질 게임:** 주로 오브젝트 변신(Prop Hunt)이나 정적인 숨기에 초점을 맞춤. 본 프로젝트처럼 다수의 AI NPC 사이에서 '행동 패턴'을 위장하여 플레이어 Seeker를 속이는 방식의 게임은 부족함
 
 ## System Design
+- ### System Architecture
+<img width="3798" height="6266" alt="Mermaid Chart - Create complex, visual diagrams with text -2025-10-29-143407" src="https://github.com/user-attachments/assets/559467ad-104b-494e-bbe6-4a505ae4f562" />
 
 - ### System Requirements
 
@@ -47,11 +49,17 @@
 ## Conclusion
 
 - ### 주요 성과
-
   * **완전한 PvPvE 멀티플레이 게임 루프 구현:** Unity Services와 Netcode for Gameobjects를 활용하여 세션 관리, 로비, 역할 배정, 인게임 플레이(Hider 생존 및 미션 수행, Seeker 탐색 및 공격), 결과 처리까지 이어지는 완전한 멀티플레이 게임 사이클을 성공적으로 구현함
   * **핵심 소셜 디덕션 메커니즘 구축:** 플레이어 Seeker가 플레이어 Hider를 다수의 AI NPC(`Npa.cs`) 사이에서 찾아내야 하는 핵심 게임플레이 메커니즘을 구현함. Hider는 NPC의 행동을 모방하여 자신의 정체를 숨겨야 함
   * **이벤트 기반 시스템 아키텍처:** `GamePlayEventHandler`와 `MissionNotifier` 등 이벤트 버스를 사용하여 UI, 게임 로직, 미션 시스템 간의 결합도를 낮추고 유연한 구조를 설계함
   * **확장 가능한 컨텐츠 구조:** 동물(`AnimalData`), 미션(`MissionData`), 상호작용 오브젝트(`InteractionData`) 등을 `ScriptableObject` 기반으로 설계하여, 코드 수정 없이 새로운 게임 요소를 쉽게 추가하고 관리할 수 있는 시스템을 구축함
+  * **인게임 이미지**
+    * <img width="600" alt="스크린샷 2025-10-29 234949" src="https://github.com/user-attachments/assets/95675f18-280f-41d4-84ca-e7e3c73f49c6" />
+    * <img width="600" alt="스크린샷 2025-10-29 234832" src="https://github.com/user-attachments/assets/676db210-c224-41b6-bfd0-9b8be31bdc28" />
+    * <img width="600" alt="스크린샷 2025-10-29 235015" src="https://github.com/user-attachments/assets/91fad58c-dc07-458c-ad6c-282f97bbfe5e" />
+    * <img width="600" alt="스크린샷 2025-10-29 235057" src="https://github.com/user-attachments/assets/628505dd-5b74-4d92-bd32-2caa21536413" />
+
+
 
 - ### 향후 발전 방향
 
