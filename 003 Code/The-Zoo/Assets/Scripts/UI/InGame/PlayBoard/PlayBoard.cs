@@ -30,7 +30,7 @@ namespace UI.InGame.PlayBoard
 
         private IEnumerator Ping()
         {
-            while (PlayManager.Instance.gameBoot.Value)
+            while (PlayManager.Instance.gameLoop.Value)
             {
                 yield return wait;
 

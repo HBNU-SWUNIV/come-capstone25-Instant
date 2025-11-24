@@ -13,47 +13,38 @@ namespace Mission
     {
         [SerializeField] private List<MissionData> missions = new();
 
-        private readonly WaitForSeconds waitFirstDelay = new(20f);
-        private readonly WaitForSeconds missionInterval = new(60f);
-
         private MissionExecutor executor;
-        private MissionData currentMission;
 
         public void Awake()
         {
             executor = GetComponent<MissionExecutor>();
         }
 
-        public void StartMission()
+        public void InitializeForHideSeek()
         {
+            if (!IsSessionOwner) return;
+
             SetVisibleRpc(false);
-
-            MissionLoopRpc();
-        }
-
-        [Rpc(SendTo.Authority, RequireOwnership = false)]
-        private void MissionLoopRpc()
-        {
-            StartCoroutine(MissionCo());
-        }
-
-        private IEnumerator MissionCo()
-        {
             SetSeekerMissionRpc();
+        }
 
-            yield return waitFirstDelay;
+        public void ExecuteRandomMissionServer()
+        {
+            if (!IsSessionOwner) return;
+            if (missions == null || missions.Count == 0) return;
+            if (!PlayManager.Instance.gameLoop.Value) return;
 
-            while (PlayManager.Instance.gameBoot.Value)
-            {
-                var index = Random.Range(0, missions.Count);
-                currentMission = missions[index];
+            var index = Random.Range(0, missions.Count);
+            var mission = missions[index];
 
-                SetVisibleRpc(true);
+            AssignMissionRpc((int)mission.type, mission.description, mission.targetValue);
+        }
 
-                AssignMissionRpc((int) currentMission.type, currentMission.description, currentMission.targetValue);
-
-                yield return missionInterval;
-            }
+        [Rpc(SendTo.Everyone)]
+        public void LastStandModeRpc()
+        {
+            executor.SetVisible(false);
+            executor.SetBaseMission(true, "최후의 1인이 되어라 !");
         }
 
         [Rpc(SendTo.Everyone)]
@@ -65,27 +56,22 @@ namespace Mission
         [Rpc(SendTo.Everyone)]
         private void SetSeekerMissionRpc()
         {
-            var seeker = PlayerLocator.LocalPlayer.entity.role.Value == Role.Seeker;
-
-            executor.SetSeekerVisible(seeker);
+            var isSeeker = PlayerLocator.LocalPlayer.entity.role.Value == Role.Seeker;
+            executor.SetBaseMission(isSeeker, "Hider를 찾아라 !");
         }
 
         [Rpc(SendTo.Everyone)]
         private void AssignMissionRpc(int type, string desc, int target)
         {
-            print($"[MissionManager] Start Assign mission: {type}");
-
             var localPlayer = PlayerLocator.LocalPlayer.entity;
             if (localPlayer.role.Value != Role.Hider)
             {
-                print("This is not hider, mission is not assigned.");
                 executor.SetVisible(false);
                 return;
             }
 
-            print("This is hider, mission is assigned.");
-
-            executor.SetMission((MissionType) type, desc, target);
+            executor.SetVisible(true);
+            executor.SetMission((MissionType)type, desc, target);
         }
     }
 }

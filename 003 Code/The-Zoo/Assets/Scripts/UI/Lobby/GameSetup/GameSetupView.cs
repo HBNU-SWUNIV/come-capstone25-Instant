@@ -5,7 +5,6 @@ using Networks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Lobby.GameSetup
@@ -13,6 +12,10 @@ namespace UI.Lobby.GameSetup
     public class GameSetupView : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private List<RectTransform> contents = new();
+
+        [Header("Mode")]
+        [SerializeField] private Toggle hideSeekMode;
+        [SerializeField] private Toggle lastStandMode;
 
         [Header("IsPrivate")]
         [SerializeField] private Toggle privateToggle;
@@ -60,7 +63,7 @@ namespace UI.Lobby.GameSetup
             rectTransform = GetComponent<RectTransform>();
 
             openSize = rectTransform.sizeDelta;
-            closeSize = new Vector2(openSize.x, openSize.y * 0.12f);
+            closeSize = new Vector2(openSize.x, 60f);
 
             rectTransform.sizeDelta = closeSize;
 
@@ -107,6 +110,9 @@ namespace UI.Lobby.GameSetup
             privateToggle.isOn = controller.IsPrivate.Original;
             passwordInput.text = controller.Password.Original;
 
+            hideSeekMode.isOn = GameManager.Instance.gameMode.Value == GameManager.GameMode.HideSeek;
+            lastStandMode.isOn = GameManager.Instance.gameMode.Value == GameManager.GameMode.LastStand;
+
             seekerCountDropdown.ClearOptions();
             List<string> options = new();
             for (var i = 1; i < ConnectionManager.Instance.CurrentSession.PlayerCount; i++)
@@ -117,9 +123,9 @@ namespace UI.Lobby.GameSetup
 
             seekerCountDropdown.value = controller.SeekerCount.Original - 1;
 
-            npcCountDropdown.value = controller.NpcCount.Original - 3;
+            npcCountDropdown.value = controller.NpcCount.Original - 5;
 
-            gameTimeDropdown.value = controller.GameTime.Original / 60 - 5;
+            gameTimeDropdown.value = controller.GameTime.Original / 60 - 1;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -137,6 +143,9 @@ namespace UI.Lobby.GameSetup
 
         private void Register()
         {
+            hideSeekMode.onValueChanged.AddListener(OnHideSeekModeChanged);
+            lastStandMode.onValueChanged.AddListener(OnLastStandModeChanged);
+
             privateToggle.onValueChanged.AddListener(OnPrivateToggled);
             sessionNameInput.onValueChanged.AddListener(OnSessionNameChanged);
             passwordInput.onValueChanged.AddListener(OnPasswordChanged);
@@ -157,6 +166,9 @@ namespace UI.Lobby.GameSetup
 
         private void Unregister()
         {
+            hideSeekMode.onValueChanged.RemoveListener(OnHideSeekModeChanged);
+            lastStandMode.onValueChanged.RemoveListener(OnLastStandModeChanged);
+
             privateToggle.onValueChanged.RemoveListener(OnPrivateToggled);
             sessionNameInput.onValueChanged.RemoveListener(OnSessionNameChanged);
             passwordInput.onValueChanged.RemoveListener(OnPasswordChanged);
@@ -175,6 +187,23 @@ namespace UI.Lobby.GameSetup
             cancelButton.onClick.RemoveListener(OnCancelButtonClick);
         }
 
+        private void OnHideSeekModeChanged(bool arg0)
+        {
+            if (!arg0) return;
+
+            GameManager.Instance.gameMode.Value = GameManager.GameMode.HideSeek;
+
+            seekerCountDropdown.interactable = true;
+        }
+
+        private void OnLastStandModeChanged(bool arg0)
+        {
+            if (!arg0) return;
+
+            GameManager.Instance.gameMode.Value = GameManager.GameMode.LastStand;
+
+            seekerCountDropdown.interactable = false;
+        }
 
         private void TrackChange<T>(T value, GameOptionField<T> optionField)
         {
@@ -205,12 +234,12 @@ namespace UI.Lobby.GameSetup
         
         private void OnNpcCountChanged(int arg0)
         {
-            TrackChange(arg0 + 3, controller.NpcCount);
+            TrackChange(arg0 + 5, controller.NpcCount);
         }
 
         private void OnGameTimeChanged(int arg0)
         {
-            TrackChange((arg0 + 5) * 60, controller.GameTime);
+            TrackChange((arg0 + 1) * 60, controller.GameTime);
         }
 
         private void Clear()

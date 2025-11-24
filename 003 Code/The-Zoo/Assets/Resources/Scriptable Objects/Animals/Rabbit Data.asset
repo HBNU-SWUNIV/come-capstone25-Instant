@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Rabbit Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 14
+  type: 12
   playerPrefab: {fileID: 9171409375890668218, guid: 5e6404754f361a74698e5d05669e7624, type: 3}
   npcPrefab: {fileID: 1571146525097946423, guid: b04ee97e99807ee46bf59936fca81f9e, type: 3}

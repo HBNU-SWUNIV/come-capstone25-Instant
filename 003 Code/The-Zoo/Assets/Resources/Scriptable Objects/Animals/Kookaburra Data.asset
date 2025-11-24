@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Kookaburra Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 5
+  type: 4
   playerPrefab: {fileID: 5463681541339836859, guid: a112d32e0aa4fc448b963e5867e3276a, type: 3}
   npcPrefab: {fileID: 5541220736652042783, guid: 9f379ea52572b1c468040bcf0b8c6f34, type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Flower 3
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.EnvObjectData
   obj: {fileID: 1143931805411576, guid: f71e980e020ab924ebed9a227a648ec8, type: 3}
-  count: 4
+  count: 5

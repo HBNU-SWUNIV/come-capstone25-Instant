@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Emu Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 3
+  type: 17
   playerPrefab: {fileID: 7593957089612400223, guid: fed03b83b21a55f49bbb8835426aaa13, type: 3}
   npcPrefab: {fileID: 8678936621333599387, guid: 6280164f46481d8419f62ce926d69c69, type: 3}

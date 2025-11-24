@@ -79,7 +79,7 @@ namespace Players
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            CameraManager.Instance?.EnableCamera(true);
+            CameraManager.Instance?.EnableControl(true);
             InputActions.Player.Enable();
         }
 
@@ -90,7 +90,7 @@ namespace Players
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            CameraManager.Instance?.EnableCamera(false);
+            CameraManager.Instance?.EnableControl(false);
             InputActions.Player.Disable();
         }
 

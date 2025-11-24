@@ -3,6 +3,7 @@ using EventHandler;
 using Networks;
 using TMPro;
 using UI.Lobby.SessionList;
+using Unity.Services.Authentication;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -32,7 +33,7 @@ namespace UI.Lobby
             quickStartButton.onClick.AddListener(OnQuickStartButtonClick);
             sessionListButton.onClick.AddListener(sessionsList.Show);
 
-            GamePlayEventHandler.OnUIChanged("Title");
+            GamePlayEventHandler.OnUIChanged(Util.TitleSceneName);
         }
 
         private void OnDisable()
@@ -51,8 +52,10 @@ namespace UI.Lobby
         {
             try
             {
+                var playerName = Util.GetPlayerNameWithoutHash(AuthenticationService.Instance.PlayerName);;
+
                 var data = new ConnectionData(ConnectionData.ConnectionType.Quick, null, null,
-                    Util.GetRandomSessionName());
+                    Util.GetDefaultSessionName(playerName));
 
                 await ConnectionManager.Instance.ConnectAsync(data);
             }

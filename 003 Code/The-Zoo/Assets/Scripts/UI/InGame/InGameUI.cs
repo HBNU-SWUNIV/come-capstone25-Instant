@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using EventHandler;
 using GamePlay;
@@ -8,12 +9,14 @@ using UI.Lobby.Preferences;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI.InGame
 {
     public class InGameUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI timerText;
+        [SerializeField] private TextMeshProUGUI notifyText;
         [SerializeField] private PlayBoard.PlayBoard playBoard;
         [SerializeField] private Preferences preferences;
         [SerializeField] private Image[] redHealth;
@@ -36,8 +39,9 @@ namespace UI.InGame
             GamePlayEventHandler.CheckInteractable += OnKeyUI;
 
             keyUI.SetVisible(false);
+            notifyText.gameObject.SetActive(false);
 
-            GamePlayEventHandler.OnUIChanged("InGame");
+            GamePlayEventHandler.OnUIChanged(Util.InGameSceneName);
         }
 
         private void OnDisable()
@@ -61,6 +65,31 @@ namespace UI.InGame
         private void OnTabKeyPressed(InputAction.CallbackContext ctx)
         {
             playBoard.SetVisible(ctx.performed);
+        }
+
+        internal IEnumerator Notify(string text)
+        {
+            notifyText.gameObject.SetActive(true);
+            notifyText.text = text;
+
+            notifyText.transform.localScale = Vector3.one * 0.7f;
+
+            notifyText.DOFade(1f, 0.3f);
+            notifyText.transform.DOScale(1f, 0.3f)
+                .SetEase(Ease.OutBack);
+
+            notifyText.transform.DOPunchScale(Vector3.one * 0.15f, 0.6f, 10, 1f)
+                .SetDelay(0.3f);
+
+            yield return new WaitForSeconds(5f);
+
+            notifyText.DOFade(0f, 0.3f);
+            notifyText.transform.DOScale(0.7f, 0.3f)
+                .SetEase(Ease.InBack);
+
+            yield return new WaitForSeconds(0.3f);
+
+            notifyText.gameObject.SetActive(false);
         }
 
         internal void Unsubscribe()

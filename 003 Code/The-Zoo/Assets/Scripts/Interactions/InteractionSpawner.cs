@@ -11,7 +11,7 @@ namespace Interactions
     {
         private readonly List<NetworkObject> spawnedObjects = new();
 
-        [Rpc(SendTo.Authority, RequireOwnership = false)]
+        [Rpc(SendTo.Authority)]
         internal void SpawnRpc(RpcParams rpcParams = default)
         {
             var interactions = SpawnObjectStore.Instance.Interactions;
@@ -22,8 +22,7 @@ namespace Interactions
 
                 for (var i = 0; i < data.count; i++)
                 {
-                    var dir = Random.onUnitSphere;
-                    var spawnPos = PlanetGravity.Instance.GetSurfacePoint(dir, out var surfaceNormal);
+                    var spawnPos = PlanetGravity.Instance.GetSurfacePoint(out var surfaceNormal);
 
                     var rotationOnSurface = Quaternion.FromToRotation(Vector3.up, surfaceNormal);
                     var rotation = rotationOnSurface * Quaternion.Euler(0, Random.Range(0f, 360f), 0);
@@ -38,7 +37,7 @@ namespace Interactions
             }
         }
 
-        [Rpc(SendTo.Authority, RequireOwnership = false)]
+        [Rpc(SendTo.Authority)]
         internal void ClearRpc(RpcParams rpcParams = default)
         {
             foreach (var obj in spawnedObjects.Where(obj => obj && obj.IsSpawned))

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Wombat Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 18
+  type: 16
   playerPrefab: {fileID: 818637052757675923, guid: 7218288aae65cab40afe5a7055153c76, type: 3}
   npcPrefab: {fileID: 1260765949213965906, guid: 70672682047f98f47adb9129b3538070, type: 3}

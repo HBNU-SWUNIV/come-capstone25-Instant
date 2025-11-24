@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Grass 1
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.EnvObjectData
   obj: {fileID: 1435283653269720, guid: 00e2e59cbc04eab4a982218df54ce70b, type: 3}
-  count: 7
+  count: 6

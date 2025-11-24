@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +7,7 @@ namespace Players.Common
 {
     public class CharacterAnimator : NetworkAnimator
     {
+        public static readonly int IdleHash = Animator.StringToHash("Idle");
         public static readonly int MoveHash = Animator.StringToHash("Move");
         public static readonly int RunHash = Animator.StringToHash("Run");
         public static readonly int JumpHash = Animator.StringToHash("Jump");
@@ -51,12 +53,20 @@ namespace Players.Common
 
         internal void OnHit()
         {
+            Animator.SetTrigger(HitHash);
             Animator.CrossFade(HitHash, 0.1f);
         }
 
         internal void OnDeath()
         {
+            Animator.SetTrigger(DeathHash);
             Animator.CrossFade(DeathHash, 0.1f);
+        }
+
+        internal void OnIdle()
+        {
+            Animator.SetTrigger(IdleHash);
+            Animator.CrossFade(IdleHash, 0.5f);
         }
 
         internal void Rebind()

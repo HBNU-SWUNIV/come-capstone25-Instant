@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Sparrow Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 15
+  type: 13
   playerPrefab: {fileID: 1564656635851268393, guid: b4fe5a14ac59dbd47a616a219e6982bd, type: 3}
   npcPrefab: {fileID: 7163262827092335686, guid: 91771c78dc9e034449e1df39a4d6729f, type: 3}

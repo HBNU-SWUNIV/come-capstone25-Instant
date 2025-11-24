@@ -14,6 +14,17 @@ namespace Players.Roles
             base.OnEnable();
 
             currentObject = null;
+
+            player.SetSpeed(3f);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            if (!IsOwner) return;
+
+            player.SetSpeed(3f);
         }
 
         private void FixedUpdate()

@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using AI.Seeker;
-using Mission;
+using Planet;
+using Scriptable;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Utils;
 #if UNITY_EDITOR
 using Unity.Netcode.Editor;
 #endif
@@ -18,14 +21,12 @@ namespace Players.Common
     {
         private SerializedProperty moveSpeed;
         private SerializedProperty runMag;
-        private SerializedProperty slowdown;
         private SerializedProperty sensitivity;
 
         public override void OnEnable()
         {
             moveSpeed = serializedObject.FindProperty(nameof(CharacterBase.moveSpeed));
             runMag = serializedObject.FindProperty(nameof(CharacterBase.runMag));
-            slowdown = serializedObject.FindProperty(nameof(CharacterBase.slowdown));
             sensitivity = serializedObject.FindProperty(nameof(CharacterBase.sensitivity));
 
             base.OnEnable();
@@ -35,7 +36,6 @@ namespace Players.Common
         {
             EditorGUILayout.PropertyField(moveSpeed);
             EditorGUILayout.PropertyField(runMag);
-            EditorGUILayout.PropertyField(slowdown);
             EditorGUILayout.PropertyField(sensitivity);
         }
 
@@ -57,14 +57,13 @@ namespace Players.Common
     }
 #endif
 
-    public class CharacterBase : NetworkTransform, IMovable
+    public class CharacterBase : NetworkTransform, IMovable, IAnimalType
     {
 #if UNITY_EDITOR
         public bool characterPropertiesVisible;
 #endif
         [SerializeField] internal float moveSpeed = 3f;
         [SerializeField] internal float runMag = 1.5f;
-        [SerializeField] internal float slowdown = 0.2f;
         [SerializeField] internal float sensitivity = 1.5f;
 
         public event Action OnJumpCallback;
@@ -79,19 +78,20 @@ namespace Players.Common
         internal PlanetBody pBody;
         internal Rigidbody rBody;
 
+        private float originSpeed;
         private float speed;
-        private float slowdownRate = 1f;
         private bool canAttack = true;
         private bool isHit;
+        private bool isStunned;
 
         protected readonly WaitForSeconds respawnWait = new(3f);
         private readonly WaitForSeconds invincibleWait = new(0.5f);
-        private readonly WaitForSeconds slowdownWait = new(0.5f);
         private readonly WaitForSeconds attackWait = new(0.8f);
 
         public bool CanMove { get; set; } = true;
         public bool CanJump { get; set; } = true;
         public bool SpinHold { get; set; }
+        public AnimalType Type { get; set; }
 
         public override void OnNetworkSpawn()
         {
@@ -120,12 +120,13 @@ namespace Players.Common
         public void SetSpeed(float v)
         {
             moveSpeed = v;
+            originSpeed = moveSpeed;
             speed = moveSpeed;
         }
 
         public void UpdateSpeed(float v)
         {
-            moveSpeed *= v;
+            moveSpeed = originSpeed * v;
             speed = moveSpeed;
         }
 
@@ -142,7 +143,6 @@ namespace Players.Common
             CanJump = true;
             SetSpeed(3f);
             UpdateScale(1f);
-            slowdownRate = 1f;
             isDead.Value = false;
 
             hBody.Initialize(hp);
@@ -150,6 +150,12 @@ namespace Players.Common
             if(!rBody.isKinematic) rBody.linearVelocity = Vector3.zero;
 
             animator.Rebind();
+        }
+
+        protected void InitialLobbyPosition(int index)
+        {
+            var pos = Util.GetCirclePositions(Vector3.zero, index, 2f, 4);
+            Teleport(pos, Quaternion.LookRotation((Vector3.zero - pos).normalized), Vector3.one);
         }
 
         protected void Move(Vector2 dir)
@@ -166,7 +172,7 @@ namespace Players.Common
             var moveDir = transform.forward * dir.y + transform.right * dir.x;
             moveDir.Normalize();
 
-            rBody.MovePosition(rBody.position + moveDir * (slowdownRate * (speed * Time.fixedDeltaTime)));
+            rBody.MovePosition(rBody.position + moveDir * (speed * Time.fixedDeltaTime));
         }
 
         protected void Run(bool run)
@@ -192,7 +198,6 @@ namespace Players.Common
         {
             if (!IsOwner) return;
             if (isDead.Value) return;
-            if (isHit) return;
             if (!CanMove) return;
             if (!CanJump) return;
             if (SpinHold) return;
@@ -208,7 +213,6 @@ namespace Players.Common
         {
             if (!IsOwner) return;
             if (isDead.Value) return;
-            if (isHit) return;
             if (!CanMove) return;
             if (!CanJump) return;
 
@@ -226,7 +230,6 @@ namespace Players.Common
         {
             if (!IsOwner) return;
             if (isDead.Value) return;
-            if (isHit) return;
             if (!canAttack) return;
             if (!IsOwner) return;
             if (!CanMove) return;
@@ -252,6 +255,14 @@ namespace Players.Common
             StartCoroutine(HitCo());
         }
 
+        internal void Stun(float time)
+        {
+            if (!IsOwner) return;
+            if (isDead.Value) return;
+
+            StartCoroutine(StunCo(time));
+        }
+
         private void Death()
         {
             if (!IsOwner) return;
@@ -263,6 +274,9 @@ namespace Players.Common
         private void OnHpChanged(int previousValue, int newValue)
         {
             if (previousValue < newValue) return;
+            if (isHit) return;
+
+            PlayHitFxRpc();
 
             if (newValue <= 0)
             {
@@ -279,23 +293,38 @@ namespace Players.Common
             fxHandler?.PlayHitFx();
         }
 
+        [Rpc(SendTo.Everyone)]
+        private void PlayStunFxRpc(float time)
+        {
+            fxHandler?.PlayStunFx(time);
+        }
+
         private IEnumerator HitCo()
         {
-            PlayHitFxRpc();
-
-            yield return null;
-
             animator.OnHit();
-
-            slowdownRate = 0.5f;
 
             yield return invincibleWait;
 
             isHit = false;
+        }
 
-            yield return slowdownWait;
+        private IEnumerator StunCo(float time)
+        {
+            if (isStunned) yield break;
 
-            slowdownRate = 1f;
+            isStunned = true;
+
+            animator.OnDeath();
+
+            PlayStunFxRpc(time);
+
+            yield return new WaitForSeconds(time);
+
+            animator.OnIdle();
+
+            CanMove = true;
+
+            isStunned = false;
         }
 
         protected virtual IEnumerator DeathCo()

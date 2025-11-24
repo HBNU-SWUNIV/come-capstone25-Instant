@@ -9,5 +9,6 @@ namespace Scriptable
         public Color defaultColor;
         public Color hiderColor;
         public Color seekerColor;
+        public Color fighterColor;
     }
 }

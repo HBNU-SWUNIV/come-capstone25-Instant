@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Platypus Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 10
+  type: 9
   playerPrefab: {fileID: 8937558775421246893, guid: 5ffc40e8aa6632243a9016b84a568e24, type: 3}
   npcPrefab: {fileID: 5313258297516367597, guid: 2301271bb1c9bf94a84ea17a2af3ccbd, type: 3}

@@ -91,12 +91,18 @@ namespace Players
         internal void AlignForward()
         {
             var forward = Vector3.Cross(
-                CameraManager.Instance.Orbit.transform.right,
+                CameraManager.Instance.orbit.transform.right,
                 transform.up).normalized;
 
             transform.rotation = Quaternion.LookRotation(forward, transform.up);
 
             CameraManager.Instance.LookMove();
+        }
+
+        [Rpc(SendTo.Everyone)]
+        internal void ShowNameTagRpc(bool show)
+        {
+            playerNameText.gameObject.SetActive(show);
         }
 
         private void OnPlayerNameChanged(FixedString32Bytes prev, FixedString32Bytes current)
@@ -117,23 +123,33 @@ namespace Players
             {
                 case Role.Observer:
                     gameObject.layer = LayerMask.NameToLayer("Observer");
+                    gameObject.GetComponent<FighterRole>().enabled = false;
                     gameObject.GetComponent<SeekerRole>().enabled = false;
                     gameObject.GetComponent<HiderRole>().enabled = false;
                     playerRenderer.UseObserverShader();
                     break;
                 case Role.Hider:
                     gameObject.layer = LayerMask.NameToLayer("Hider");
+                    gameObject.GetComponent<FighterRole>().enabled = false;
                     gameObject.GetComponent<SeekerRole>().enabled = false;
                     gameObject.GetComponent<HiderRole>().enabled = true;
                     break;
                 case Role.Seeker:
                     gameObject.layer = LayerMask.NameToLayer("Seeker");
+                    gameObject.GetComponent<FighterRole>().enabled = false;
                     gameObject.GetComponent<SeekerRole>().enabled = true;
+                    gameObject.GetComponent<HiderRole>().enabled = false;
+                    break;
+                case Role.Fighter:
+                    gameObject.layer = LayerMask.NameToLayer("Fighter");
+                    gameObject.GetComponent<FighterRole>().enabled = true;
+                    gameObject.GetComponent<SeekerRole>().enabled = false;
                     gameObject.GetComponent<HiderRole>().enabled = false;
                     break;
                 case Role.None:
                 default:
                     gameObject.layer = LayerMask.NameToLayer("Default");
+                    gameObject.GetComponent<FighterRole>().enabled = false;
                     gameObject.GetComponent<SeekerRole>().enabled = false;
                     gameObject.GetComponent<HiderRole>().enabled = false;
                     playerRenderer.UseOriginShader();

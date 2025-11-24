@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Pigeon Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 9
+  type: 8
   playerPrefab: {fileID: 7180826353641684393, guid: adb899c00f6d287408bc19ff6b9bcd36, type: 3}
   npcPrefab: {fileID: 6147536635696916648, guid: 400f25e3167803643b717c38512fbdd7, type: 3}

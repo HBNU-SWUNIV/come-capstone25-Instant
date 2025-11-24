@@ -23,15 +23,14 @@ namespace AI
 
         [SerializeField] private float moveSpeed = 3f;
         [SerializeField] private float runMag = 1.5f;
-        [SerializeField] internal float sensitivity = 1.5f;
+        [SerializeField] internal float sensitivity = 0.15f;
 
         [Header("Suspicion Settings")]
-        [SerializeField] private float maxSuspicion = 130f;
-        [SerializeField] private float suspicionDecayPerSecond = 5f;
-        [SerializeField] private float suspicionThreshold = 120f;
+        [SerializeField] private float maxSuspicion = 150f;
+        [SerializeField] private float suspicionDecayPerSecond = 3f;
         [SerializeField][MinMaxRangeSlider(0, 100)] private Vector2 suspicionSafeZone;
-        [SerializeField] private float suspicionBonus = 0.1f;
-        [SerializeField] private float suspicionPenalty = -0.05f;
+        [SerializeField] private float suspicionBonus = 0.002f;
+        [SerializeField] private float suspicionPenalty = -0.003f;
 
         [Header("Suspicion Gains")]
         [SerializeField] private float gainJump = 10f;
@@ -43,7 +42,6 @@ namespace AI
         public Vector2 lookInput;
 
         private readonly List<ISeekerListener> listeners = new();
-        private readonly WaitForSeconds slowdownWait = new(1f);
         private readonly WaitForSeconds attackWait = new(0.8f);
         private Animator animator;
         private BehaviorParameters bp;
@@ -59,7 +57,6 @@ namespace AI
         private RayPerceptionSensorComponent3D raySensor;
 
         private Rigidbody rBody;
-        private float slowdownRate = 1f;
 
         private float speed;
         private bool canAttack = true;
@@ -69,11 +66,10 @@ namespace AI
             if (collision.collider.CompareTag("Interactable"))
                 AddReward(-0.01f);
 
-            if (collision.collider.CompareTag("PickUp")) AddReward(1f);
-
+            if (collision.collider.CompareTag("PickUp")) AddReward(0.2f);
             if (collision.collider.CompareTag("Seeker"))
             {
-                AddReward(-1f);
+                AddReward(-0.2f);
                 EndEpisode();
             }
         }
@@ -147,11 +143,11 @@ namespace AI
 
             suspicion = 60f;
 
-            if (seeker != null)
+            if (seeker)
                 seeker.transform.position =
                     planet.transform.position + Util.GetRandomPositionInSphere(7.5f);
 
-            if (target != null) target.MoveRandomPosition();
+            if (target) target.MoveRandomPosition();
 
             foreach (var interactable in interactables)
             {
@@ -166,13 +162,11 @@ namespace AI
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            sensor.AddObservation(transform.position);
             sensor.AddObservation(transform.up.normalized);
             sensor.AddObservation(transform.forward.normalized);
+            sensor.AddObservation(transform.right.normalized);
             sensor.AddObservation(moveInput);
             sensor.AddObservation(lookInput);
-            sensor.AddObservation(rBody.linearVelocity.normalized);
-            sensor.AddObservation(rBody.linearVelocity.magnitude);
             sensor.AddObservation(CanMove);
             sensor.AddObservation(CanJump);
             sensor.AddObservation(SpinHold);
@@ -180,7 +174,7 @@ namespace AI
             sensor.AddObservation(isRun);
 
             sensor.AddObservation(GetSeekerViewDot());
-            sensor.AddObservation(suspicion / suspicionThreshold);
+            sensor.AddObservation(suspicion / maxSuspicion);
         }
 
         public override void OnActionReceived(ActionBuffers actions)
@@ -266,7 +260,7 @@ namespace AI
             moveDir.Normalize();
 
             rBody.MovePosition(rBody.position +
-                               moveDir * (slowdownRate * (speed * Time.fixedDeltaTime)));
+                               moveDir * (speed * Time.fixedDeltaTime));
         }
 
         private void LookAction(int action)
@@ -296,7 +290,8 @@ namespace AI
             animator.SetTrigger(CharacterAnimator.JumpHash);
         }
 
-        private bool lastSpin = false;
+        private bool lastSpin;
+
         private void SpinAction(int action)
         {
             if (!CanMove) return;
@@ -366,13 +361,28 @@ namespace AI
             }
 
             // 4. 일정 수치 초과 시 실패 처리
-            /*if (suspicion >= suspicionThreshold)
+            if (suspicion >= maxSuspicion)
             {
                 AddReward(-1f);
                 EndEpisode();
-            }*/
+            }
         }
 
+        private void RewardIdle()
+        {
+            var isIdleNow = rBody.linearVelocity.magnitude < 0.01f
+                            && !isRun
+                            && !isSpin
+                            && !isMove;
+
+            var isSeekerVisible = GetSeekerViewDot() >= 0f;
+
+            // 의심도가 낮고(안전) / Seeker가 안 보이고 / idle일 때
+            if (isIdleNow && !isSeekerVisible && suspicion < suspicionSafeZone.y)
+            {
+                AddReward(0.0005f);
+            }
+        }
 
         private void HandleRewards()
         {
@@ -387,11 +397,11 @@ namespace AI
 
                 if (alignment > 0.95f) // 정면에 가까운 방향으로 이동 중
                 {
-                    AddReward(1f / MaxStep); // 의미 있는 생존 보상
+                    AddReward(0.0005f); // 의미 있는 생존 보상
                 }
                 else if (alignment > 0.5f)
                 {
-                    AddReward(0.5f / MaxStep);
+                    AddReward(0.0002f);
                 }
             }
 
@@ -399,11 +409,13 @@ namespace AI
 
             if (dot >= 0f)
             {
-                if (dot > 0.8f) AddReward(-1f / MaxStep);
-                else if (dot < 0.5f) AddReward(1f / MaxStep);
+                if (dot > 0.8f) AddReward(-0.001f);
+                else if (dot < 0.5f) AddReward(0.001f);
             }
 
             HandleSuspicion();
+
+            RewardIdle();
         }
 
         private void IsSeekerFind(out Transform tr)
@@ -436,18 +448,7 @@ namespace AI
 
         protected void Hit()
         {
-            StartCoroutine(SlowdownCo());
-
             animator.SetTrigger(CharacterAnimator.HitHash);
-        }
-
-        private IEnumerator SlowdownCo()
-        {
-            slowdownRate = 0.2f;
-
-            yield return slowdownWait;
-
-            slowdownRate = 1f;
         }
 
         private IEnumerator AttackCooldownCo()

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: TasmanianDevil Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 16
+  type: 14
   playerPrefab: {fileID: 7582840583034539398, guid: 24e84b314b1f75346870e33a9b884a4b, type: 3}
   npcPrefab: {fileID: 1528527270249792193, guid: 6fddb8e096eeb87478f06f847a8b588e, type: 3}

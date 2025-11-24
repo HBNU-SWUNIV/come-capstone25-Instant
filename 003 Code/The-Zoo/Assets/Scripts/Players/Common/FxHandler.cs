@@ -1,3 +1,4 @@
+using System.Collections;
 using Scriptable;
 using Unity.Netcode;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Players.Common
         [SerializeField] private ParticleSystem attackVfx;
         [SerializeField] private SfxData attackSfx;
 
+        [SerializeField] private ParticleSystem stunVfx;
+
         public void PlayHitFx()
         {
             HitVfx();
@@ -22,6 +25,12 @@ namespace Players.Common
         {
             AttackVfx();
             AttackSfx();
+        }
+
+        public void PlayStunFx(float time)
+        {
+            StartCoroutine(StunVfx(time));
+            HitSfx();
         }
 
         private void HitVfx()
@@ -50,6 +59,15 @@ namespace Players.Common
             if (!attackSfx) return;
 
             AudioManager.Instance.PlaySfx(attackSfx.clip, transform.position, attackSfx.volume, attackSfx.pitch);
+        }
+
+        private IEnumerator StunVfx(float time)
+        {
+            stunVfx.Play();
+
+            yield return new WaitForSeconds(time);
+
+            stunVfx.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
     }
 }

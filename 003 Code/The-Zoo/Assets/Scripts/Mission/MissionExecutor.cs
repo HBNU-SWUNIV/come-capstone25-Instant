@@ -8,7 +8,6 @@ namespace Mission
 {
     public class MissionExecutor : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup seekerMission;
         [SerializeField] private MissionUI missionUI;
         [SerializeField] private MissionTimer timer;
 
@@ -25,18 +24,17 @@ namespace Mission
             timer.OnTimerFinished += UnsubscribeEvents;
         }
 
-        internal void SetSeekerVisible(bool show)
-        {
-            seekerMission.alpha = show ? 1 : 0;
-            seekerMission.interactable = show;
-            seekerMission.blocksRaycasts = show;
-        }
-
         internal void SetVisible(bool show)
         {
-            missionUI.SetVisible(show);
+            missionUI.SetHiderMissionViewVisible(show);
 
             missionUI.AnimateShow();
+        }
+
+        internal void SetBaseMission(bool show, string text)
+        {
+            missionUI.SetBaseMissionViewVisible(show);
+            missionUI.SetBaseMissionText(text);
         }
 
         internal void SetMission(MissionType type, string desc, int target)

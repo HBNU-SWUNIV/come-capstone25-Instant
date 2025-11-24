@@ -1,4 +1,4 @@
-namespace Players
+namespace Players.Common
 {
     public interface IMovable
     {

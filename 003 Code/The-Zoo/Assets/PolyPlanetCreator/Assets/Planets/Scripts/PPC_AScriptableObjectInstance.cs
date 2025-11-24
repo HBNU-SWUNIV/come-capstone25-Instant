@@ -34,7 +34,7 @@ public abstract class PPC_AScriptableObjectInstance<T> : ScriptableObject
         {
             if (m_instance == null)
             {
-                m_instance = FindObjectOfType<T>();
+                m_instance = FindFirstObjectByType<T>();
                 if (m_instance == null)
                 {
                     m_instance = Resources.Load<T>(typeof(T).Name);

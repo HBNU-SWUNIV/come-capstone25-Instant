@@ -5,7 +5,7 @@ namespace Players.Common
 {
     public class PlanetBody : MonoBehaviour
     {
-        private const float AlignSpeed = 500f;
+        private const float AlignSpeed = 15f;
 
         public void Initialize(Rigidbody rb)
         {
@@ -15,12 +15,12 @@ namespace Players.Common
             PlanetGravity.Instance.Subscribe(rb);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             AlignToSurface();
         }
 
-		private void AlignToSurface()
+        private void AlignToSurface()
         {
             if (!PlanetGravity.Instance) return;
 

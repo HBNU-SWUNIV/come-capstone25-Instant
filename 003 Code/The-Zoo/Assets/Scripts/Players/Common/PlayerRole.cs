@@ -1,8 +1,5 @@
-using System;
-using Mission;
 using Unity.Netcode;
 using UnityEngine;
-using Utils;
 
 namespace Players.Common
 {
@@ -12,6 +9,7 @@ namespace Players.Common
         Observer,
         Hider,
         Seeker,
+        Fighter,
     }
 
     public class PlayerRole : NetworkBehaviour
@@ -22,7 +20,7 @@ namespace Players.Common
         [Tooltip("interact Point로부터의 거리")][SerializeField] protected float interactRange = 1f;
         [Tooltip("상호작용 범위")][SerializeField] protected float interactRadius = 1f;
 
-        private PlayerEntity entity;
+        protected PlayerEntity entity;
         protected PlayerController player;
 
         public Collider[] hits = new Collider[8];
@@ -48,11 +46,13 @@ namespace Players.Common
             player.OnAttackCallback -= TryInteract;
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = GetRoleColor();
             Gizmos.DrawWireSphere(interactPoint.position + transform.forward * interactRange, interactRadius);
         }
+#endif
 
         protected Collider Cast()
         {
@@ -62,16 +62,22 @@ namespace Players.Common
 
             if (count < 1) return null;
 
-            var closest = hits[0];
-            var minSqrDist = (closest.transform.position - interactPoint.position).sqrMagnitude;
+            Collider closest = null;
+            var minSqrDist = float.MaxValue;
 
-            for (var i = 1; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
-                var sqrDist = (hits[i].transform.position - interactPoint.position).sqrMagnitude;
+                var col = hits[i];
+
+                if (!col) continue;
+
+                if (col.transform == transform) continue;
+
+                var sqrDist = (col.transform.position - transform.position).sqrMagnitude;
                 if (!(sqrDist < minSqrDist)) continue;
 
                 minSqrDist = sqrDist;
-                closest = hits[i];
+                closest = col;
             }
 
             return closest;
@@ -83,6 +89,8 @@ namespace Players.Common
 
             var target = Cast();
             if (!target) return;
+
+            print(target.name);
 
             if (!target.TryGetComponent<NetworkObject>(out var no)) return;
 
@@ -107,6 +115,9 @@ namespace Players.Common
                 Role.Seeker => GameManager.Instance
                     ? GameManager.Instance.roleColor.seekerColor
                     : Color.red,
+                Role.Fighter => GameManager.Instance
+                    ? GameManager.Instance.roleColor.fighterColor
+                    : Color.yellow,
                 _ => GameManager.Instance
                     ? GameManager.Instance.roleColor.defaultColor
                     : Color.white

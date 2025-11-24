@@ -6,6 +6,7 @@ using Unity.Netcode;
 using Unity.Services.Core;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI.Lobby
 {
@@ -38,7 +39,7 @@ namespace UI.Lobby
 
             SwitchUI(session.IsHost);
 
-            GamePlayEventHandler.OnUIChanged("Lobby");
+            GamePlayEventHandler.OnUIChanged(Util.LobbySceneName);
 #if UNITY_EDITOR
             gameStartButton.interactable = true;
 #else

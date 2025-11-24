@@ -8,7 +8,6 @@ using Players;
 using Players.Common;
 using Players.Structs;
 using Scriptable;
-using UI;
 using UI.Lobby.InformationPopup;
 using Unity.Netcode;
 using Unity.Services.Authentication;
@@ -18,13 +17,23 @@ using Utils;
 
 public class GameManager : NetworkBehaviour
 {
+    public enum GameMode
+    {
+        HideSeek,
+        LastStand,
+    }
+
     [SerializeField] internal RoleColor roleColor;
 
+    public NetworkVariable<GameMode> gameMode = new();
     public NetworkVariable<int> readyCount = new();
 
     internal readonly Dictionary<ulong, (string name, AnimalType type, Role role)> playerDict = new();
 
     public readonly NetworkList<PlayerData> players = new();
+    public NetworkVariable<int> hiderCount = new(0);
+    public NetworkVariable<int> seekerCount = new(0);
+    public NetworkVariable<int> fighterCount = new(0);
 
     public static GameManager Instance { get; private set; }
 
@@ -47,8 +56,8 @@ public class GameManager : NetworkBehaviour
 
         if (IsSessionOwner)
         {
-            players.Clear();
             readyCount.Value = 0;
+            players.OnListChanged += OnPlayerListChanged;
         }
 
         players.OnListChanged += OnPlayersChanged;
@@ -58,7 +67,29 @@ public class GameManager : NetworkBehaviour
     {
         base.OnNetworkDespawn();
 
+        players.OnListChanged -= OnPlayerListChanged;
         players.OnListChanged -= OnPlayersChanged;
+    }
+
+    private void OnPlayerListChanged(NetworkListEvent<PlayerData> change)
+    {
+        if (!IsSessionOwner) return;
+
+        switch (change.Type)
+        {
+            case NetworkListEvent<PlayerData>.EventType.Add:
+                AddRoleCount(change.Value.role);
+                break;
+
+            case NetworkListEvent<PlayerData>.EventType.Remove:
+                RemoveRoleCount(change.Value.role);
+                break;
+
+            case NetworkListEvent<PlayerData>.EventType.Value:
+                RemoveRoleCount(change.PreviousValue.role);
+                AddRoleCount(change.Value.role);
+                break;
+        }
     }
 
     private void OnPlayersChanged(NetworkListEvent<PlayerData> changeEvent)
@@ -82,6 +113,17 @@ public class GameManager : NetworkBehaviour
                 playerDict.Clear();
                 break;
         }
+    }
+
+    internal int GetMyOrder(ulong clientId)
+    {
+        for (var i = 0; i < players.Count; i++)
+        {
+            if (players[i].clientId == clientId)
+                return i;
+        }
+
+        return -1;
     }
 
     [Rpc(SendTo.Authority)]
@@ -137,11 +179,37 @@ public class GameManager : NetworkBehaviour
         readyCount.Value = isReady ? readyCount.Value + 1 : readyCount.Value - 1;
     }
 
-    internal int GetRoleCount(Role role)
+    private void AddRoleCount(Role role)
     {
-        return players.AsNativeArray().Count(x => x.role == role);
+        switch (role)
+        {
+            case Role.Hider:
+                hiderCount.Value++;
+                break;
+            case Role.Seeker:
+                seekerCount.Value++;
+                break;
+            case Role.Fighter:
+                fighterCount.Value++;
+                break;
+        }
     }
 
+    private void RemoveRoleCount(Role role)
+    {
+        switch (role)
+        {
+            case Role.Hider:
+                hiderCount.Value--;
+                break;
+            case Role.Seeker:
+                seekerCount.Value--;
+                break;
+            case Role.Fighter:
+                fighterCount.Value--;
+                break;
+        }
+    }
 
     internal void Ready()
     {
@@ -159,7 +227,7 @@ public class GameManager : NetworkBehaviour
 
             if (!CanGameStart()) throw new Exception("플레이어들이 준비되지 않았습니다");
 
-            LoadSceneRpc("InGame");
+            LoadSceneRpc(Util.InGameSceneName);
 
             readyCount.Value = 0;
 
@@ -176,7 +244,7 @@ public class GameManager : NetworkBehaviour
         NpcSpawner.Instance.ClearRpc();
         PlayManager.Instance.intSpawner.ClearRpc();
 
-        LoadSceneRpc("Lobby");
+        LoadSceneRpc(Util.LobbySceneName);
 
         ConnectionManager.Instance.UnlockSessionAsync();
     }
@@ -209,12 +277,5 @@ public class GameManager : NetworkBehaviour
     private void LoadSceneRpc(string sceneName)
     {
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-    }
-
-    private async void OnApplicationQuit()
-    {
-        Debug.Log("[ConnectionManager] Graceful session leave on quit.");
-
-        await ConnectionManager.Instance.DisconnectSessionAsync();
     }
 }

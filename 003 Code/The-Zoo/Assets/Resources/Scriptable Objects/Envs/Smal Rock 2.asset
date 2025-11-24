@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Smal Rock 2
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.EnvObjectData
   obj: {fileID: 1019362320417226, guid: 9f21020355643c74c88002634abcdabd, type: 3}
-  count: 5
+  count: 4

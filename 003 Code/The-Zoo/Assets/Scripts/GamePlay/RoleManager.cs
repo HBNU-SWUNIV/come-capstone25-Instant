@@ -12,6 +12,14 @@ namespace GamePlay
     {
         public int seekerCount = 1;
 
+        internal void AssignRole()
+        {
+            foreach (var id in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                SetRoleRpc(Role.Fighter, RpcTarget.Single(id, RpcTargetUse.Temp));
+            }
+        }
+
         internal void AssignRole(int seed)
         {
             var count = ConnectionManager.Instance.CurrentSession.Properties[Util.SEEKERCOUNT].Value;
@@ -37,18 +45,15 @@ namespace GamePlay
 
         internal void UnassignRole()
         {
-            for (var i = 0; i < NetworkManager.Singleton.ConnectedClientsIds.Count; i++)
+            foreach (var id in NetworkManager.Singleton.ConnectedClientsIds)
             {
-                var id = NetworkManager.Singleton.ConnectedClientsIds[i];
                 SetRoleRpc(Role.None, RpcTarget.Single(id, RpcTargetUse.Temp));;
             }
         }
 
         [Rpc(SendTo.SpecifiedInParams)]
-        private void SetRoleRpc(Role role, RpcParams rpcParams)
+        private void SetRoleRpc(Role role, RpcParams rpcParams = default)
         {
-            print(PlayerLocator.LocalPlayer.name);
-
             PlayerLocator.LocalPlayer.entity.role.Value = role;
         }
     }

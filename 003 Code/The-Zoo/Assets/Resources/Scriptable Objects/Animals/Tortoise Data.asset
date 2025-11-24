@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Tortoise Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 17
+  type: 15
   playerPrefab: {fileID: 956477058676263179, guid: b8eb18e09b544ee4fbda195ee5b8d3fc, type: 3}
   npcPrefab: {fileID: 4592526880512013315, guid: 25394286569b14249b95e1d34df62ce8, type: 3}

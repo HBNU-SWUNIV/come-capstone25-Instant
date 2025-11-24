@@ -85,23 +85,22 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 10000
   planet: {fileID: 0}
   seeker: {fileID: 0}
   target: {fileID: 0}
   interactables: []
   moveSpeed: 3
   runMag: 1.5
-  sensitivity: 1.5
-  maxSuspicion: 130
-  suspicionDecayPerSecond: 1
-  suspicionThreshold: 120
+  sensitivity: 0.15
+  maxSuspicion: 150
+  suspicionDecayPerSecond: 3
   suspicionSafeZone: {x: 40, y: 70}
-  suspicionBonus: 0.001
-  suspicionPenalty: -0.001
-  gainJump: 10
-  gainSpin: 5
-  gainAttack: 30
+  suspicionBonus: 0.002
+  suspicionPenalty: -0.003
+  gainJump: 6
+  gainSpin: 3
+  gainAttack: 15
   suspicion: 60
   moveInput: {x: 0, y: 0}
   lookInput: {x: 0, y: 0}
@@ -131,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 24
+    VectorObservationSize: 20
     NumStackedVectorObservations: 4
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -147,6 +146,7 @@ MonoBehaviour:
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
+  m_DeterministicInference: 0
   m_ObservableAttributeHandling: 0
 --- !u!114 &7698470656365953208
 MonoBehaviour:
@@ -160,7 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 2
+  DecisionStep: 0
   TakeActionsBetweenDecisions: 1
 --- !u!114 &8260965337020107351
 MonoBehaviour:
@@ -179,14 +180,16 @@ MonoBehaviour:
   - Seeker
   - Interactable
   - PickUp
-  m_RaysPerDirection: 10
-  m_MaxRayDegrees: 90
-  m_SphereCastRadius: 0.5
+  m_RaysPerDirection: 6
+  m_MaxRayDegrees: 60
+  m_SphereCastRadius: 0.3
   m_RayLength: 8
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967177
-  m_ObservationStacks: 5
+    m_Bits: 4294956424
+  m_ObservationStacks: 2
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 1

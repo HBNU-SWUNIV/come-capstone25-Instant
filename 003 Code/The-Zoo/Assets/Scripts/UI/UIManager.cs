@@ -5,6 +5,7 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 namespace UI
 {
@@ -55,7 +56,7 @@ namespace UI
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
         {
-            if (scene.name != "Lobby") return;
+            if (scene.name != Util.LobbySceneName) return;
 
             if (!UnityServices.State.Equals(ServicesInitializationState.Initialized))
             {

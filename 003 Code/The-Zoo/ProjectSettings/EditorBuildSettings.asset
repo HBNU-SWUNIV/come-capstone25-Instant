@@ -7,15 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
-    guid: 7e5635a50a3ae5740a220ce087e69e6b
+    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/InGame.unity
     guid: 4c8c0d7df047df94ca0c728c0d5a164c
-  - enabled: 0
-    path: Assets/Scenes/Bootstrap.unity
-    guid: 2dc30a620cb180c479ba7ca2b0c1df87
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b0753e6e4c7f40d4ba619d96504640a0, type: 2}
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.ml-agents.settings: {fileID: 11400000, guid: d47ca20e78731a24b8d063901af1b3af, type: 2}
   m_UseUCBPForAssetBundles: 0

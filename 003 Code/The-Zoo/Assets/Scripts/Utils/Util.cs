@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,28 +14,24 @@ namespace Utils
         public static readonly string SEEKERCOUNT = "SeekerCount";
         public static readonly string GAMETIME = "GameTime";
 
-        private static readonly string[] SESSIONNAMES =
-        {
-            "숨바꼭질 챔피언",
-            "보일 듯 말 듯 챔피언",
-            "숨바꼭질 마스터 클래스",
-            "내가 안 보이나?",
-            "나를 눕혀봐...",
-            "찾기 전에 반성해라",
-            "이쯤 되면 포기해라",
-            "이 게임은 원래 그런 거야",
-            "눈앞에 있어도 못 본다",
-            "승자의 법칙"
-        };
+        public const string InGameSceneName = "InGame";
+        public const string LobbySceneName = "Lobby";
+        public const string TitleSceneName = "Title";
+
+        private const string Room = "의 방";
         
         public static string GetRandomString(int length)
         {
             return Guid.NewGuid().ToString("N")[..length];
         }
         
-        public static string GetRandomSessionName()
+        public static string GetDefaultSessionName(string playerName)
         {
-            return SESSIONNAMES[Random.Range(0, SESSIONNAMES.Length)];
+            var sb = new StringBuilder();
+            sb.Append(playerName);
+            sb.Append(Room);
+
+            return sb.ToString();
         }
 
         public static string GetPlayerNameWithoutHash(string playerName)

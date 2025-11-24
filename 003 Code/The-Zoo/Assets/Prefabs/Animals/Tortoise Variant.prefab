@@ -52,6 +52,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -73,6 +75,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -179,6 +182,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -200,6 +205,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -307,6 +313,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -328,6 +336,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -434,6 +443,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -455,6 +466,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -757,15 +769,15 @@ PrefabInstance:
       objectReference: {fileID: 3071877721994309579}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_Size
-      value: 1.0196533
+      value: 1.1216185
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LocalReferencePoint.y
-      value: 0.2473354
+      value: 0.27206898
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LocalReferencePoint.z
-      value: 0.087269306
+      value: 0.09599626
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LODs.Array.data[0].renderers.Array.size
@@ -773,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LODs.Array.data[0].screenRelativeHeight
-      value: 0.95
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LODs.Array.data[1].renderers.Array.size
@@ -781,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LODs.Array.data[1].screenRelativeHeight
-      value: 0.7
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LODs.Array.data[2].renderers.Array.size
@@ -789,7 +801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
-      value: 0.35
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3252659263102169919, guid: 5224e81aded87394baff470fc195f1bb, type: 3}
       propertyPath: m_LODs.Array.data[3].renderers.Array.size

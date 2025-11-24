@@ -50,6 +50,7 @@ namespace AI
             UnsubscribeAll();
         }
 
+#if UNITY_EDITOR
         // ---------- Gizmos ----------
         private void OnDrawGizmosSelected()
         {
@@ -75,6 +76,7 @@ namespace AI
                     Gizmos.DrawLine(transform.position, h.HiderTransform.position);
                 }
         }
+#endif
 
         // ISeekerListener 구현: Hider 행동 수신
         public void OnHiderAction(Transform hider, HiderActionType action)

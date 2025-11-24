@@ -1,9 +1,11 @@
 using System;
+using System.ComponentModel;
 using EventHandler;
 using Networks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI.Lobby
 {
@@ -17,7 +19,7 @@ namespace UI.Lobby
             playerNameInput.onSelect.AddListener((str) => AudioManager.Instance.PlayUISfx());
             enterButton.onClick.AddListener(AudioManager.Instance.PlayUISfx);
             enterButton.onClick.AddListener(OnEnterButtonClick);
-            GamePlayEventHandler.OnUIChanged("Title");
+            GamePlayEventHandler.OnUIChanged(Util.TitleSceneName);
         }
 
         private void OnDisable()
@@ -31,7 +33,7 @@ namespace UI.Lobby
         {
             try
             {
-                if (string.IsNullOrEmpty(playerNameInput.text)) throw new Exception("플레이어의 이름을 입력해주세요");
+                if (string.IsNullOrEmpty(playerNameInput.text)) throw new WarningException("플레이어의 이름을 입력해주세요");
 
                 GamePlayEventHandler.OnPlayerLogin();
 
@@ -42,7 +44,7 @@ namespace UI.Lobby
             catch (Exception e)
             {
                 InformationPopup.InformationPopup.instance.ShowPopup(e.Message);
-                Debug.LogError(e);
+                Debug.LogWarning(e);
             }
         }
     }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Mushroom Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.InteractionData
   obj: {fileID: 5545273735149756181, guid: fc43e86da701378409c4976a2a011880, type: 3}
-  count: 10
+  count: 8

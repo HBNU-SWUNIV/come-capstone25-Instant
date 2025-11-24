@@ -48,7 +48,7 @@ namespace Interactions
             isBusy.Value = false;
         }
 
-        [Rpc(SendTo.Authority, RequireOwnership = false)]
+        [Rpc(SendTo.Authority)]
         private void SpawnRpc(RpcParams rpcParams = default)
         {
             var spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];

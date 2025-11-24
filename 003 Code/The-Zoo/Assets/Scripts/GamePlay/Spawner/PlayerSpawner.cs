@@ -1,5 +1,6 @@
 using System.Linq;
 using Players;
+using Players.Common;
 using Scriptable;
 using Unity.Netcode;
 using UnityEngine;
@@ -76,6 +77,7 @@ namespace GamePlay.Spawner
                 NetworkManager.LocalClientId,
                 isPlayerObject: true);
 
+            netObj.GetComponent<IAnimalType>().Type = type;
             netObj.GetComponent<PlayerEntity>().animalType.Value = type;
         }
     }

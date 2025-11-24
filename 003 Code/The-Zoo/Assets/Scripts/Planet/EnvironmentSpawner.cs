@@ -21,8 +21,7 @@ namespace Planet
 
                 for (var i = 0; i < data.count; i++)
                 {
-                    var dir = Random.onUnitSphere;
-                    var pos = PlanetGravity.Instance.GetSurfacePoint(dir, out var normal);
+                    var pos = PlanetGravity.Instance.GetSurfacePoint(out var normal);
                     var rot = Quaternion.FromToRotation(Vector3.up, normal) *
                               Quaternion.Euler(0, Random.Range(0f, 360f), 0);
 

@@ -11,7 +11,7 @@ public class PPC_ColorPicker : MonoBehaviour
         get
         {
             if (m_cam == null)
-                m_cam = FindObjectOfType<Camera>();
+                m_cam = FindFirstObjectByType<Camera>();
 
             return m_cam;
         }

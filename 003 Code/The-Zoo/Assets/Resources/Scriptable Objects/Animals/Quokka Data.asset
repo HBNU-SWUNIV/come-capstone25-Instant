@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a30be35ecf246d2aaf51a70dce9ed60, type: 3}
   m_Name: Quokka Data
   m_EditorClassIdentifier: Assembly-CSharp::Scriptable.AnimalData
-  type: 13
+  type: 11
   playerPrefab: {fileID: 3242550351487029896, guid: 6ddb4842fff4b244c9762d2a693a0eef, type: 3}
   npcPrefab: {fileID: 5600461108905891961, guid: 24a1d498b87f6104c9ddadb996f89485, type: 3}

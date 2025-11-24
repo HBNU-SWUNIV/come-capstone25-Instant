@@ -8,31 +8,47 @@ namespace AI
 {
     public class AgentTransform : CharacterBase
     {
-        private const float GainJump = 10f;
-        private const float GainSpin = 5f;
-        private const float GainAttack = 30f;
-        private const float MaxSuspicion = 130f;
-        internal const float SuspicionThreshold = 120f;
+        private const float GainJump = 6f;
+        private const float GainSpin = 3f;
+        private const float GainAttack = 15f;
+        internal const float maxSuspicion = 150f;
+        private const float SuspicionDecayPerSecond = 3f;
+        internal bool isMove;
         internal bool isRun;
-
         internal bool isSpin;
 
-        private bool lastSpin;
         internal Vector2 lookInput;
-
         internal Vector2 moveInput;
 
-        internal float suspicion;
+        internal float suspicion = 60f;
+
+        private bool lastSpin;
+        private bool forceStop;
+
+        private void FixedUpdate()
+        {
+            if (!IsOwner) return;
+
+            if (suspicion > 0f)
+            {
+                suspicion -= SuspicionDecayPerSecond * Time.fixedDeltaTime;
+                if (suspicion < 0f) suspicion = 0f;
+            }
+        }
 
         private void Begin()
         {
             SpinHold = false;
             isSpin = false;
+            isMove = false;
             isRun = false;
+            forceStop = false;
 
-            suspicion = 0f;
+            suspicion = 60f;
 
             Initialize(3);
+
+            StartCoroutine(RandomStopRoutine());
         }
 
         public override void OnNetworkSpawn()
@@ -56,6 +72,13 @@ namespace AI
                 2 => -1f,
                 _ => 0f
             };
+
+            if (forceStop)
+            {
+                moveInput = Vector2.zero;
+            }
+
+            isMove = moveInput != Vector2.zero;
 
             Move(moveInput);
         }
@@ -105,7 +128,7 @@ namespace AI
             switch (type)
             {
                 case HiderActionType.Jump:
-                    suspicion = Mathf.Min(suspicion + GainJump, MaxSuspicion);
+                    suspicion = Mathf.Min(suspicion + GainJump, maxSuspicion);
                     break;
                 case HiderActionType.Spin:
                     var info = animator.Animator.GetCurrentAnimatorStateInfo(0);
@@ -114,7 +137,7 @@ namespace AI
                     if (info.normalizedTime >= 1.15f && !lastSpin)
                     {
                         lastSpin = true;
-                        suspicion = Mathf.Min(suspicion + GainSpin, MaxSuspicion);
+                        suspicion = Mathf.Min(suspicion + GainSpin, maxSuspicion);
                     }
                     else
                     {
@@ -123,7 +146,7 @@ namespace AI
 
                     break;
                 case HiderActionType.Attack:
-                    suspicion = Mathf.Min(suspicion + GainAttack, MaxSuspicion);
+                    suspicion = Mathf.Min(suspicion + GainAttack, maxSuspicion);
                     break;
             }
         }
@@ -146,10 +169,26 @@ namespace AI
             if (!IsOwner) return;
 
             var id = hBody.lastAttackerId;
-            var player = NetworkManager.ConnectedClients[id].PlayerObject;
-            var targetRef = new NetworkObjectReference(player);
+            if(!NetworkManager.ConnectedClients.TryGetValue(id, out var player)) return;
+            var targetRef = new NetworkObjectReference(player.PlayerObject);
 
             GiveDamageRpc(targetRef, RpcTarget.Single(id, RpcTargetUse.Temp));
+        }
+
+        private IEnumerator RandomStopRoutine()
+        {
+            while (IsSpawned)
+            {
+                var wait = Random.Range(10f, 20f);
+                yield return new WaitForSeconds(wait);
+
+                var stopTime = Random.Range(0.2f, 8f);
+                forceStop = true;
+
+                yield return new WaitForSeconds(stopTime);
+
+                forceStop = false;
+            }
         }
 
         [Rpc(SendTo.SpecifiedInParams)]
@@ -162,7 +201,7 @@ namespace AI
             body.Damaged(1, 0);
         }
 
-        [Rpc(SendTo.Authority, RequireOwnership = false)]
+        [Rpc(SendTo.Authority)]
         private void RequestDespawnRpc(NetworkObjectReference targetRef)
         {
             if (!targetRef.TryGet(out var no)) return;

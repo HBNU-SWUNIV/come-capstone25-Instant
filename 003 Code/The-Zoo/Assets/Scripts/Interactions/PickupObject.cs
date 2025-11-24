@@ -22,7 +22,6 @@ namespace Interactions
 
         private Rigidbody rBody;
         private PlanetBody pBody;
-        private NetworkTransform nTransform;
 
         private readonly WaitForSeconds wait = new(0.3f);
         private readonly WaitForSeconds respawnWait = new(1f);
@@ -35,7 +34,6 @@ namespace Interactions
 
             TryGetComponent(out rBody);
             TryGetComponent(out pBody);
-            TryGetComponent(out nTransform);
         }
 
         public override void OnNetworkSpawn()
@@ -91,19 +89,24 @@ namespace Interactions
 
             yield return respawnWait;
 
-            var dir = Random.onUnitSphere;
-            var pos = PlanetGravity.Instance.GetSurfacePoint(dir, out var surfaceNormal);
+            var pos = PlanetGravity.Instance.GetSurfacePoint(out var surfaceNormal);
 
             var rotationOnSurface = Quaternion.FromToRotation(Vector3.up, surfaceNormal);
             var rot = rotationOnSurface * Quaternion.Euler(0, Random.Range(0f, 360f), 0);
 
-            nTransform.Teleport(pos, rot, Vector3.one);
+            TeleportRpc(pos, rot);
 
             yield return respawnWait;
 
             isVisible.Value = true;
 
             isBusy.Value = false;
+        }
+
+        [Rpc(SendTo.Everyone)]
+        private void TeleportRpc(Vector3 pos, Quaternion rot)
+        {
+            transform.SetPositionAndRotation(pos, rot);
         }
     }
 }

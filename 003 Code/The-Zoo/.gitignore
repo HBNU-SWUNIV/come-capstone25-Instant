@@ -75,5 +75,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
-Assets/AI/results.meta
-[Aa]ssets/AI/results/*
+AI/results/*

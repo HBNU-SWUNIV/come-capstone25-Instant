@@ -1,17 +1,16 @@
-using System;
 using System.Collections;
 using System.Linq;
 using EventHandler;
 using GamePlay;
+using GamePlay.Spawner;
 using Mission;
 using Players.Common;
+using Scriptable;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Utils;
-using Random = UnityEngine.Random;
-#if UNITY_EDITOR
-#endif
 
 namespace Players
 {
@@ -44,12 +43,6 @@ namespace Players
             if (other.CompareTag("Mission")) MissionNotifier.Instance.NotifyStayRock(false);
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, 0.05f);
-        }
-
         public void ApplyMouseSensitivity(float value)
         {
             sensitivity = Mathf.Clamp(value, 0.02f, 5f);
@@ -67,22 +60,26 @@ namespace Players
             readyChecker = GetComponent<PlayerReadyChecker>();
 
             PlayerLocator.Set(this);
-
-            PivotBinder.Instance?.BindPivot(transform);
-            CameraManager.Instance.Initialize(transform);
+            Initialize(3);
+            Subscribe();
 
             var sens = PlayerPrefs.GetFloat("opt_mouse_sens", sensitivity);
             ApplyMouseSensitivity(sens);
 
+            PivotBinder.Instance?.BindPivot(transform);
+            CameraManager.Instance.Initialize(transform);
+
             playerInput.HideCursor();
 
-            Subscribe();
+            StartCoroutine(PositionSetting());
+        }
 
-            Initialize(3);
+        private IEnumerator PositionSetting()
+        {
+            yield return new WaitForSeconds(0.2f);
 
-            var pos = Util.GetCirclePositions(Vector3.zero, NetworkManager.ConnectedClientsIds.Count % 4, 2f, 4);
-
-            Teleport(pos, Quaternion.LookRotation((Vector3.zero - pos).normalized), Vector3.one);
+            var index = NetworkManager.ConnectedClientsIds.Count % 4;
+            InitialLobbyPosition(index);
         }
 
         public override void OnNetworkDespawn()
@@ -106,12 +103,33 @@ namespace Players
 
             yield return respawnWait;
 
+            var sessionOwner = NetworkManager.Singleton.CurrentSessionOwner;
+            AllNpcDamagedRpc(entity.animalType.Value, RpcTarget.Single(sessionOwner, RpcTargetUse.Temp));
+
             animator.Rebind();
 
             isDead.Value = false;
             CanMove = true;
 
             entity.ChangeObserver();
+        }
+
+        [Rpc(SendTo.SpecifiedInParams)]
+        private void AllNpcDamagedRpc(AnimalType type, RpcParams rpcParams = default)
+        {
+            var list = NpcSpawner.Instance.spawnedNpc
+                .Where(d => d.type == type)
+                .Select(d => d.npc)
+                .ToList();
+
+            foreach (var npc in list)
+            {
+                if (!npc) continue;
+                if (!npc.IsSpawned) continue;
+                if (!npc.TryGetComponent<HittableBody>(out var body)) return;
+
+                body.Damaged(3, 0);
+            }
         }
 
         private void OnSceneLoadComplete(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
@@ -123,21 +141,21 @@ namespace Players
 
             buff.Initialize();
             entity.AlignForward();
-
             playerInput.HideCursor();
 
-            if (!sceneName.Equals("Lobby")) return;
+            entity.ShowNameTagRpc(false);
 
-            GamePlayEventHandler.OnUIChanged("Lobby");
+            if (!sceneName.Equals(Util.LobbySceneName)) return;
 
+            GamePlayEventHandler.OnUIChanged(Util.LobbySceneName);
+
+            entity.ShowNameTagRpc(true);
             entity.Initialize();
             readyChecker.Initialize();
 
-            var index = NetworkManager.ConnectedClientsIds.ToList().IndexOf(clientId);
+            var index = GameManager.Instance.GetMyOrder(clientId);
 
-            var pos = Util.GetCirclePositions(Vector3.zero, index, 2f, 4);
-
-            transform.SetPositionAndRotation(pos, Quaternion.LookRotation((Vector3.zero - pos).normalized));
+            InitialLobbyPosition(index);
         }
 
         private void Subscribe()

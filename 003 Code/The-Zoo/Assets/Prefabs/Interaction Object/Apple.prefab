@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 1865578193692397401}
   - component: {fileID: 7067507325620170847}
   - component: {fileID: 929624924240719458}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Apple
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -103,8 +103,8 @@ Rigidbody:
   m_GameObject: {fileID: 7414879991195930383}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 20
-  m_AngularDamping: 0.05
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -119,7 +119,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &928567148142591235
 MonoBehaviour:
@@ -161,33 +161,33 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkTransformExpanded: 0
   AutoOwnerAuthorityTickOffset: 1
-  PositionInterpolationType: 2
-  RotationInterpolationType: 2
+  PositionInterpolationType: 1
+  RotationInterpolationType: 1
   ScaleInterpolationType: 2
   PositionLerpSmoothing: 1
-  PositionMaxInterpolationTime: 0.1
+  PositionMaxInterpolationTime: 0.5
   RotationLerpSmoothing: 1
-  RotationMaxInterpolationTime: 0.1
+  RotationMaxInterpolationTime: 0.5
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
-  UseUnreliableDeltas: 0
+  UseUnreliableDeltas: 1
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.05
+  RotAngleThreshold: 5
   ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
+  UseQuaternionSynchronization: 1
+  UseQuaternionCompression: 1
+  UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
@@ -238,6 +238,7 @@ MonoBehaviour:
     m_InternalValue: 0
   type: 0
   models: {fileID: 5448535379572796556}
+  isRecycle: 0
 --- !u!114 &929624924240719458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   hitSfx: {fileID: 11400000, guid: c9e925a0b50d6e8469cee82aa5c507ed, type: 2}
   attackVfx: {fileID: 0}
   attackSfx: {fileID: 0}
+  stunVfx: {fileID: 0}
 --- !u!1001 &6017239896991245081
 PrefabInstance:
   m_ObjectHideFlags: 0
