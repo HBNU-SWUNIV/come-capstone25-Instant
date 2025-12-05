@@ -138,7 +138,7 @@ namespace GamePlay
 
             // 2) NPC 스폰, 로딩 종료, 게임 시작 스텝을 절대시간 기준으로 스케줄링
             AddOneShotTask(1.5, SpawnNpcOnce);
-            AddOneShotTask(2.0, HideLoadingRpc);
+            AddOneShotTask(2.1, HideLoadingRpc);
             AddOneShotTask(2.2, StartGameplayStep);
         }
 
@@ -161,12 +161,51 @@ namespace GamePlay
             {
                 AddRepeatingTask(20.0, 60.0, () => missionManager.ExecuteRandomMissionServer());
             }
+            else if (mode == GameManager.GameMode.LastStand)
+            {
+                AddRepeatingTask(20.0, 40.0, GiantEvent);
+            }
 
             // 토네이도: 30초 후 최초, 이후 30초 주기
             if (tornadoManager)
             {
                 AddRepeatingTask(30.0, 30.0, () => tornadoManager.SpawnOnceServer());
             }
+        }
+
+        private void GiantEvent()
+        {
+            var livingPlayers = new List<NetworkClient>();
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                if (client.PlayerObject.TryGetComponent<CharacterBase>(out var character) &&
+                    !character.isDead.Value)
+                {
+                    livingPlayers.Add(client);
+                }
+            }
+
+            if (livingPlayers.Count > 0)
+            {
+                var target = livingPlayers[Random.Range(0, livingPlayers.Count)];
+
+                var targetRef = new NetworkObjectReference(target.PlayerObject);
+
+                RequestSizeChangeRpc(targetRef, RpcTarget.Single(target.ClientId, RpcTargetUse.Temp));
+
+                NotifyRpc("누군가 10초 동안 거대해집니다!");
+            }
+
+        }
+
+        [Rpc(SendTo.SpecifiedInParams)]
+         private void RequestSizeChangeRpc(NetworkObjectReference targetRef, RpcParams rpcParams = default)
+        {
+            if (!targetRef.TryGet(out var no) || !no.IsSpawned) return;
+
+            if (!no.TryGetComponent<PlayerController>(out var comp)) return;
+
+            comp.ApplyGient();
         }
 
         private void Update()
@@ -318,7 +357,7 @@ namespace GamePlay
         [Rpc(SendTo.Everyone)]
         public void NotifyRpc(string text)
         {
-            StartCoroutine(inGame.Notify(text));
+            inGame.Notify(text);
         }
 
         private void OnPlayersChanged(NetworkListEvent<PlayerData> _)

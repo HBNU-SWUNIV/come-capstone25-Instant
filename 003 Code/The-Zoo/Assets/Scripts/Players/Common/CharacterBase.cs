@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using AI.Seeker;
+using DG.Tweening;
 using Planet;
 using Scriptable;
 using Unity.Netcode;
@@ -78,8 +79,8 @@ namespace Players.Common
         internal PlanetBody pBody;
         internal Rigidbody rBody;
 
-        private float originSpeed;
-        private float speed;
+        private float currentSpeed;
+        private float currentSize = 1f;
         private bool canAttack = true;
         private bool isHit;
         private bool isStunned;
@@ -87,6 +88,8 @@ namespace Players.Common
         protected readonly WaitForSeconds respawnWait = new(3f);
         private readonly WaitForSeconds invincibleWait = new(0.5f);
         private readonly WaitForSeconds attackWait = new(0.8f);
+
+        private Tween scaleTween;
 
         public bool CanMove { get; set; } = true;
         public bool CanJump { get; set; } = true;
@@ -115,24 +118,26 @@ namespace Players.Common
             if (!IsOwner) return;
 
             hBody.healthPoint.OnValueChanged -= OnHpChanged;
+            scaleTween?.Kill();
         }
 
         public void SetSpeed(float v)
         {
             moveSpeed = v;
-            originSpeed = moveSpeed;
-            speed = moveSpeed;
+            currentSpeed = moveSpeed;
         }
 
-        public void UpdateSpeed(float v)
+        public void UpdateSpeed(float percent)
         {
-            moveSpeed = originSpeed * v;
-            speed = moveSpeed;
+            currentSpeed = moveSpeed * percent;
         }
 
         public void UpdateScale(float v)
         {
-            transform.localScale = Vector3.one * v;
+            scaleTween?.Kill();
+
+            scaleTween = transform.DOScale(Vector3.one * v, 1.0f)
+                .SetEase(Ease.OutBack);
         }
 
         protected void Initialize(int hp)
@@ -141,7 +146,7 @@ namespace Players.Common
 
             CanMove = true;
             CanJump = true;
-            SetSpeed(3f);
+            SetSpeed(moveSpeed);
             UpdateScale(1f);
             isDead.Value = false;
 
@@ -172,7 +177,7 @@ namespace Players.Common
             var moveDir = transform.forward * dir.y + transform.right * dir.x;
             moveDir.Normalize();
 
-            rBody.MovePosition(rBody.position + moveDir * (speed * Time.fixedDeltaTime));
+            rBody.MovePosition(rBody.position + moveDir * (currentSpeed * Time.fixedDeltaTime));
         }
 
         protected void Run(bool run)
@@ -180,7 +185,7 @@ namespace Players.Common
             if (!IsOwner) return;
             if (isDead.Value) return;
 
-            speed = run ? moveSpeed * runMag : moveSpeed;
+            currentSpeed = run ? moveSpeed * runMag : moveSpeed;
 
             animator.OnRun(run);
         }

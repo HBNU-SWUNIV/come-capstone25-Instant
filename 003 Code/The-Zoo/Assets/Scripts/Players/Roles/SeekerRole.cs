@@ -8,6 +8,7 @@ namespace Players.Roles
 {
     public class SeekerRole : PlayerRole
     {
+        [SerializeField] private float speed = 5f;
         [SerializeField] private float lungeDuration = 0.12f;
         [SerializeField] private float lungeDistance = 0.4f;
 
@@ -20,7 +21,7 @@ namespace Players.Roles
 
             if (!IsOwner) return;
 
-            player.SetSpeed(4f);
+            player.SetSpeed(speed);
         }
 
         protected override void OnDisable()
@@ -29,7 +30,7 @@ namespace Players.Roles
 
             if (!IsOwner) return;
 
-            player.SetSpeed(3f);
+            player.SetSpeed(speed);
         }
 
         private IEnumerator LungeRoutine()

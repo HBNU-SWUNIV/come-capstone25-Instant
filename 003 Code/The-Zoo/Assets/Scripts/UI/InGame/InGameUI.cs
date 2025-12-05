@@ -16,7 +16,8 @@ namespace UI.InGame
     public class InGameUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI timerText;
-        [SerializeField] private TextMeshProUGUI notifyText;
+        [SerializeField] private Transform notificationContainer;
+        [SerializeField] private GameObject notificationPrefab;
         [SerializeField] private PlayBoard.PlayBoard playBoard;
         [SerializeField] private Preferences preferences;
         [SerializeField] private Image[] redHealth;
@@ -39,7 +40,6 @@ namespace UI.InGame
             GamePlayEventHandler.CheckInteractable += OnKeyUI;
 
             keyUI.SetVisible(false);
-            notifyText.gameObject.SetActive(false);
 
             GamePlayEventHandler.OnUIChanged(Util.InGameSceneName);
         }
@@ -67,29 +67,18 @@ namespace UI.InGame
             playBoard.SetVisible(ctx.performed);
         }
 
-        internal IEnumerator Notify(string text)
+        internal void Notify(string text)
         {
-            notifyText.gameObject.SetActive(true);
-            notifyText.text = text;
+            // 프리팹 생성
+            var go = Instantiate(notificationPrefab, notificationContainer);
 
-            notifyText.transform.localScale = Vector3.one * 0.7f;
+            go.transform.SetAsLastSibling();
 
-            notifyText.DOFade(1f, 0.3f);
-            notifyText.transform.DOScale(1f, 0.3f)
-                .SetEase(Ease.OutBack);
-
-            notifyText.transform.DOPunchScale(Vector3.one * 0.15f, 0.6f, 10, 1f)
-                .SetDelay(0.3f);
-
-            yield return new WaitForSeconds(5f);
-
-            notifyText.DOFade(0f, 0.3f);
-            notifyText.transform.DOScale(0.7f, 0.3f)
-                .SetEase(Ease.InBack);
-
-            yield return new WaitForSeconds(0.3f);
-
-            notifyText.gameObject.SetActive(false);
+            // 텍스트 설정 및 애니메이션 시작
+            if (go.TryGetComponent<NotificationItem>(out var item))
+            {
+                item.Setup(text);
+            }
         }
 
         internal void Unsubscribe()

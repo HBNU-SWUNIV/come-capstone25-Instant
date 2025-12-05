@@ -16,6 +16,7 @@ namespace Players
 {
     public class PlayerController : CharacterBase
     {
+
         internal PlayerBuff buff;
         internal PlayerEntity entity;
         internal PlayerInputHandler playerInput;
@@ -254,13 +255,29 @@ namespace Players
             else if(ctx.canceled) Spin(false);
         }
 
+        public void ApplyGient()
+        {
+            if (!IsOwner) return;
+
+            StartCoroutine(GientCo());
+        }
+
+        private IEnumerator GientCo()
+        {
+            UpdateScale(1.5f);
+
+            yield return new WaitForSeconds(10f);
+
+            UpdateScale(1f);
+        }
+
         public void ApplyRandomReward()
         {
             if (!IsOwner) return;
 
             if (buff.RemoveBuff()) return;
 
-            buff.CreateBuff(BuffType.SPEED, true);
+            buff.CreateBuff(BuffType.Speed, true);
         }
 
         public void ApplyRandomPenalty()

@@ -49,6 +49,15 @@ namespace AI
             Initialize(3);
 
             StartCoroutine(RandomStopRoutine());
+
+            if (GameManager.Instance.gameMode.Value == GameManager.GameMode.LastStand)
+            {
+                SetSpeed(3f);
+            }
+            else
+            {
+                SetSpeed(2.5f);
+            }
         }
 
         public override void OnNetworkSpawn()
@@ -179,10 +188,10 @@ namespace AI
         {
             while (IsSpawned)
             {
-                var wait = Random.Range(10f, 20f);
+                var wait = Random.Range(5f, 30f);
                 yield return new WaitForSeconds(wait);
 
-                var stopTime = Random.Range(0.2f, 8f);
+                var stopTime = Random.Range(0.2f, 15f);
                 forceStop = true;
 
                 yield return new WaitForSeconds(stopTime);

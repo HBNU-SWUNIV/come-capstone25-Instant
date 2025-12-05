@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5616437718488566327}
   - component: {fileID: 3288526713616270971}
   - component: {fileID: 6014694769444137826}
+  - component: {fileID: -8933252709872587776}
   - component: {fileID: 7827092999446940829}
   - component: {fileID: 6130322915762357225}
   - component: {fileID: 5209263119254473209}
@@ -146,7 +147,7 @@ MonoBehaviour:
   Interpolate: 1
   SlerpPosition: 0
   characterPropertiesVisible: 1
-  moveSpeed: 3
+  moveSpeed: 2.5
   runMag: 1.5
   sensitivity: 1.5
   isDead:
@@ -182,7 +183,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 6657
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -211,7 +212,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 6657
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -219,6 +220,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &-8933252709872587776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279282440632542914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkRigidbody
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 0
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1
 --- !u!114 &7827092999446940829
 MonoBehaviour:
   m_ObjectHideFlags: 0

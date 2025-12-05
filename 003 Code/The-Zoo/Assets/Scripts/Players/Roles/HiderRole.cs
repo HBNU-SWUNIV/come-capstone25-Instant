@@ -2,11 +2,13 @@ using EventHandler;
 using Interactions;
 using Players.Common;
 using Unity.Netcode;
+using UnityEngine;
 
 namespace Players.Roles
 {
     public class HiderRole : PlayerRole
     {
+        [SerializeField] private float speed = 3f;
         private InteractableObject currentObject;
 
         protected override void OnEnable()
@@ -15,7 +17,7 @@ namespace Players.Roles
 
             currentObject = null;
 
-            player.SetSpeed(3f);
+            player.SetSpeed(speed);
         }
 
         protected override void OnDisable()
@@ -24,7 +26,7 @@ namespace Players.Roles
 
             if (!IsOwner) return;
 
-            player.SetSpeed(3f);
+            player.SetSpeed(speed);
         }
 
         private void FixedUpdate()

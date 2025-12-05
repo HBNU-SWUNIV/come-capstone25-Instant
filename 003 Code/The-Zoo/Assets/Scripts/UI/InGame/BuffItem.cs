@@ -16,7 +16,7 @@ namespace UI
         {
             image.color = isPositive ? Color.yellowGreen : Color.firebrick;
             buffNameText.text = type.ToString();
-            if(type == BuffType.SPEED)
+            if(type == BuffType.Speed)
                 buffSignText.text = isPositive ? "UP" : "DOWN";
             else
                 buffSignText.text = isPositive ? "DOWN" : "UP";

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Players.Roles;
 using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,8 +10,9 @@ namespace Players
 {
     public enum BuffType
     {
-        SPEED,
-        SIZE,
+        Speed,
+        Size,
+        Attack,
         End
     }
 
@@ -39,7 +41,7 @@ namespace Players
     public class PlayerBuff : MonoBehaviour
     {
         public event Action<List<(BuffType, bool, int)>> OnBuffChanged;
-        private const float BuffAmount = 0.05f;
+        private const float BuffAmount = 0.1f;
 
         public float totalMoveBuff = 1f;
         public float totalScaleBuff = 1f;
@@ -58,8 +60,8 @@ namespace Players
         {
             var value = type switch
             {
-                BuffType.SPEED => isPositive ? BuffAmount : -BuffAmount,
-                BuffType.SIZE => isPositive ? -BuffAmount : BuffAmount,
+                BuffType.Speed => isPositive ? BuffAmount : -BuffAmount,
+                BuffType.Size => isPositive ? -BuffAmount : BuffAmount,
                 _ => 0
             };
 
@@ -103,10 +105,10 @@ namespace Players
             {
                 switch (buff.type)
                 {
-                    case BuffType.SPEED:
+                    case BuffType.Speed:
                         move += buff.value;
                         break;
-                    case BuffType.SIZE:
+                    case BuffType.Size:
                         scale += buff.value;
                         break;
                 }

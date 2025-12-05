@@ -2,15 +2,19 @@ using System.Collections;
 using Planet;
 using Players.Common;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Players.Roles
 {
     public class FighterRole : PlayerRole
     {
+        [SerializeField] private float speed = 3f;
         [SerializeField] private bool canFratricide = false;
         [SerializeField] private float lungeDuration = 0.12f;
         [SerializeField] private float lungeDistance = 0.4f;
+
+        internal int damage = 1;
 
         private readonly WaitForSeconds delay = new (0.05f);
         private bool isLunging;
@@ -19,7 +23,9 @@ namespace Players.Roles
         {
             base.OnEnable();
 
-            player.SetSpeed(3f);
+            player.SetSpeed(speed);
+
+            damage = 1;
         }
 
         protected override void OnDisable()
@@ -28,7 +34,7 @@ namespace Players.Roles
 
             if (!IsOwner) return;
 
-            player.SetSpeed(3f);
+            player.SetSpeed(speed);
         }
 
         private IEnumerator LungeRoutine()
@@ -80,8 +86,8 @@ namespace Players.Roles
 
             if (!no.TryGetComponent<HittableBody>(out var comp)) return;
 
-            comp.Damaged(3, OwnerClientId);
-            comp.KnockBackRpc(transform.position, 25f, 0.5f);
+            comp.Damaged(damage, OwnerClientId);
+            comp.KnockBackRpc(transform.position, 30f, 0.7f);
         }
     }
 }

@@ -5,109 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aad7af9a-d9eb-4779-b603-470b4a8a9e4a" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/NotificationItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/NotificationItem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Zoo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Zoo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Amazing Assets/Curved World/Editor/Script Editors/CurvedWorldControllerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Amazing Assets/Curved World/Editor/Script Editors/CurvedWorldControllerEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Environment/Back Garden/Materials/Mat_Garden.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Environment/Back Garden/Materials/Mat_Garden.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/InGame_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/InGame_timers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ML-Agents/Timers/Lobby_timers.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ML-Agents/Timers/Lobby_timers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/CharacterPhysics.physicMaterial" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/CharacterPhysics.physicMaterial" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Agent V2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Agent V2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Cat Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Cat Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Dog Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Dog Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Dove Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Dove Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Emu Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Emu Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Gecko Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Gecko Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Kookaburra Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Kookaburra Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Mouse Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Mouse Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Muskrat Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Muskrat Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Parrot Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Parrot Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Pigeon Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Pigeon Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Platypus Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Platypus Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Possum Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Possum Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Quokka Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Quokka Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Rabbit Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Rabbit Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Sparrow Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Sparrow Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/TasmanianDevil Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/TasmanianDevil Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Tortoise Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Tortoise Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Wombat Agent V2 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Wombat Agent V2 Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Cat Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Cat Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Dog Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Dog Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Dove Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Dove Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Gecko Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Gecko Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Kookaburra Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Kookaburra Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Mouse Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Mouse Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Muskrat Varient.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Muskrat Varient.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Parrot Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Parrot Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Pigeon Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Pigeon Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Platypus Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Platypus Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Possum Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Possum Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Quokka Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Quokka Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Rabbit Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Rabbit Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Sparrow Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Sparrow Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/TasmanianDevil Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/TasmanianDevil Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Tortoise Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Tortoise Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Animals/Wombat Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Animals/Wombat Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environments/Tornado.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environments/Tornado.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FreeLook Camera.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FreeLook Camera.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Interaction Object/Apple.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Interaction Object/Apple.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Interaction Object/Mushroom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Interaction Object/Mushroom.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerObject.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerObject.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Emu Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Emu Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Gecko Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Gecko Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Kookaburra Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Kookaburra Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Mouse Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Mouse Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Muskrat Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Muskrat Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Parrot Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Parrot Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Pigeon Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Pigeon Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Platypus Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Platypus Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Possum Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Possum Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Pudu Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Pudu Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Quokka Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Quokka Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Rabbit Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Rabbit Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Sparrow Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Sparrow Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/TasmanianDevil Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/TasmanianDevil Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Tortoise Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Tortoise Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Wombat Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Animals/Wombat Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Big Rock 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Big Rock 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Big Rock 2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Big Rock 2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Flower 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Flower 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Flower 2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Flower 2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Flower 3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Flower 3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Grass 4.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Smal Rock 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Smal Rock 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Smal Rock 2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Smal Rock 2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Smal Rock 3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Envs/Smal Rock 3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Interactions/Mushroom Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Scriptable Objects/Interactions/Mushroom Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr magic star hdr ab.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr magic star hdr ab.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch ray blur add.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch ray blur add.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/InGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/InGame.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/AgentTransform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/AgentTransform.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/HiderTrainAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/HiderTrainAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/INpcIdentifier.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/INpcIdentifier.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/Npa.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Npa.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/Seeker/SeekerProximityObserver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/Seeker/SeekerProximityObserver.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlay/PlayManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlay/PlayManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlay/Spawner/NpcSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlay/Spawner/NpcSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamePlay/TornadoMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlay/TornadoMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactions/PickupObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactions/PickupObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Planet/PlanetGravity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Planet/PlanetGravity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/Common/CharacterBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Common/CharacterBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/Common/PlanetBody.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Common/PlanetBody.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/Common/PlayerRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Common/PlayerRole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerBuff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerBuff.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerInputHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerInputHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/Roles/FighterRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Roles/FighterRole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/Roles/HiderRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Roles/HiderRole.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/Roles/SeekerRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Roles/SeekerRole.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scriptable/AnimalData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scriptable/AnimalData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Travis Game Assets/Status Effects/Pipeline Upgrade/Status Effects FREE - URP.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/BuffItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/BuffItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/InGameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/InGameUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,20 +53,27 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Temp/DefaultCompany/The Zoo/Cartoon FX-Remaster-Particle Procedural Ring_Source.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ecbe576335340c9b6a2b5b3da3e46db29c00/1c/7996dd28/Physics.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Prefabs/AI/Npa/Agent V2.prefab" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/user/Documents/GitHub/The-Zoo/Assets/Prefabs/AI/Npa/Agent V2.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/user/Documents/GitHub/The-Zoo/Assets/Prefabs/PlayerObject.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Prefabs/PlayerObject.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Resources/JMO Assets/Cartoon FX Remaster/CFXR Assets/Editor/CFXR Editor.asmdef" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Seeker/IHiderBroadcaster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/Seeker/SeekerMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/TargetMover.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/user/Documents/GitHub/The-Zoo/Assets/Scripts/GamePlay/RoleManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Mission/MissionExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Mission/MissionNotifier.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Players/Common/IAnimalType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Players/PlayerBuff.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Players/PlayerLocator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Players/Roles/SeekerRole.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptable/MissionData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGame/BuffItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGame/BuffUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGame/GameResult/GameResultDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGame/Mission/MissionUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGame/NotificationItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Lobby/SessionList/PasswordPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utils/SerializableDictionary.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@d49facba0036/Unity.Collections/FixedStringMethods.cs" root0="SKIP_HIGHLIGHTING" />
@@ -296,7 +224,10 @@
       <workItem from="1763561705895" duration="5806000" />
       <workItem from="1763699155622" duration="99000" />
       <workItem from="1763699281474" duration="30675000" />
-      <workItem from="1763779572946" duration="13054000" />
+      <workItem from="1763779572946" duration="13678000" />
+      <workItem from="1764591567617" duration="97000" />
+      <workItem from="1764761770271" duration="13543000" />
+      <workItem from="1764777055986" duration="16000" />
     </task>
     <servers />
   </component>
